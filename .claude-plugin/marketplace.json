@@ -1,0 +1,20 @@
+{
+  "plugins": [
+    {
+      "name": "claude-lab-notebook",
+      "version": "1.0.0",
+      "description": "Progressive disclosure note-taking system for research and experiments",
+      "author": "Michael Rariden",
+      "repository": "https://github.com/mrariden/claude-lab-notebook",
+      "category": "productivity",
+      "tags": ["notes", "research", "experiments", "knowledge-management", "documentation"],
+      "commands": [
+        "/setup-notes",
+        "/create-note", 
+        "/update-index"
+      ],
+      "installSize": "small",
+      "lastUpdated": "2025-01-13"
+    }
+  ]
+}

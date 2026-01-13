@@ -1,0 +1,76 @@
+{
+  "name": "claude-lab-notebook",
+  "version": "1.0.0",
+  "description": "Progressive disclosure note-taking system for research and experiments. Creates organized markdown notes with templates for experiments, decisions, and troubleshooting. Optimizes context usage through hierarchical indexing.",
+  "author": {
+    "name": "Michael Rariden",
+    "email": "raridenm@hhmi.org",
+    "url": "https://github.com/mrariden"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mrariden/claude-lab-notebook"
+  },
+  "license": "MIT",
+  "keywords": [
+    "notes",
+    "notebook",
+    "knowledge-management",
+    "research",
+    "experiments",
+    "documentation",
+    "markdown",
+    "progressive-disclosure",
+    "lab-notebook"
+  ],
+  "category": "productivity",
+  "main": ".claude/commands",
+  "commands": {
+    "setup-notes": {
+      "description": "Initialize the experiment notebook system in your project",
+      "usage": "/setup-notes",
+      "file": ".claude/commands/setup-notes.md"
+    },
+    "create-note": {
+      "description": "Create a new experiment, decision, or troubleshooting note",
+      "usage": "/create-note [type]",
+      "file": ".claude/commands/create-note.md"
+    },
+    "update-index": {
+      "description": "Update INDEX.md with recent findings and consolidate notes",
+      "usage": "/update-index",
+      "file": ".claude/commands/update-index.md"
+    }
+  },
+  "features": [
+    "Progressive disclosure - loads only what's needed",
+    "Three note types: experiments, decisions, troubleshooting",
+    "Hierarchical organization (INDEX → quick-ref → detailed notes)",
+    "Template-based note creation with auto-dating",
+    "Smart index consolidation and pattern extraction",
+    "Context-efficient: ~5K tokens vs 50K+ loading all notes",
+    "Chronological experiments, topical decisions",
+    "Failed approaches as first-class documentation"
+  ],
+  "requirements": {
+    "claudeCode": ">=2.0.0"
+  },
+  "setup": {
+    "postInstall": "Run /setup-notes in your project directory to initialize the system"
+  },
+  "documentation": {
+    "readme": "README.md",
+    "quickstart": "QUICK-START.md",
+    "migration": "MIGRATION-GUIDE.md"
+  },
+  "tags": [
+    "note-taking",
+    "research",
+    "experiments",
+    "knowledge-base",
+    "documentation",
+    "productivity",
+    "ml",
+    "data-science"
+  ]
+}
