@@ -2,8 +2,7 @@
   "name": "claude-lab-notebook",
   "owner": {
     "name": "Michael Rariden",
-    "email": "raridenm@hhmi.org",
-    "url": "https://github.com/mrariden"
+    "email": "raridenm@hhmi.org"
   },
   "plugins": [
     {
@@ -12,30 +11,15 @@
       "description": "Progressive disclosure note-taking system for research and experiments",
       "author": {
         "name": "Michael Rariden",
-        "email": "raridenm@hhmi.org",
-        "url": "https://github.com/mrariden"
+        "email": "raridenm@hhmi.org"
       },
-      "repository": {
-        "type": "git",
-        "url": "https://github.com/mrariden/claude-lab-notebook"
-      },
+      "repository": "https://github.com/mrariden/claude-lab-notebook",
       "category": "productivity",
-      "tags": ["notes", "research", "experiments", "knowledge-management", "documentation"],
-      "commands": {
-        "setup-notes": {
-          "description": "Initialize the experiment notebook system in your project",
-          "usage": "/setup-notes"
-        },
-        "create-note": {
-          "description": "Create a new experiment, decision, or troubleshooting note",
-          "usage": "/create-note [type]"
-        },
-        "update-index": {
-          "description": "Update INDEX.md with recent findings and consolidate notes",
-          "usage": "/update-index"
-        }
-      },
-      "source": "https://github.com/mrariden/claude-lab-notebook"
+      "keywords": ["notes", "research", "experiments", "knowledge-management", "documentation"],
+      "source": {
+        "source": "github",
+        "repo": "mrariden/claude-lab-notebook"
+      }
     }
   ]
 }

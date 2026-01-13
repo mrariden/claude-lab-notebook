@@ -4,13 +4,9 @@
   "description": "Progressive disclosure note-taking system for research and experiments. Creates organized markdown notes with templates for experiments, decisions, and troubleshooting. Optimizes context usage through hierarchical indexing.",
   "author": {
     "name": "Michael Rariden",
-    "email": "raridenm@hhmi.org",
-    "url": "https://github.com/mrariden"
+    "email": "raridenm@hhmi.org"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mrariden/claude-lab-notebook"
-  },
+  "repository": "https://github.com/mrariden/claude-lab-notebook",
   "license": "MIT",
   "keywords": [
     "notes",
@@ -24,24 +20,7 @@
     "lab-notebook"
   ],
   "category": "productivity",
-  "main": ".claude/commands",
-  "commands": {
-    "setup-notes": {
-      "description": "Initialize the experiment notebook system in your project",
-      "usage": "/setup-notes",
-      "file": ".claude/commands/setup-notes.md"
-    },
-    "create-note": {
-      "description": "Create a new experiment, decision, or troubleshooting note",
-      "usage": "/create-note [type]",
-      "file": ".claude/commands/create-note.md"
-    },
-    "update-index": {
-      "description": "Update INDEX.md with recent findings and consolidate notes",
-      "usage": "/update-index",
-      "file": ".claude/commands/update-index.md"
-    }
-  },
+  "commands": ".claude/commands",
   "features": [
     "Progressive disclosure - loads only what's needed",
     "Three note types: experiments, decisions, troubleshooting",
@@ -62,15 +41,5 @@
     "readme": "README.md",
     "quickstart": "QUICK-START.md",
     "migration": "MIGRATION-GUIDE.md"
-  },
-  "tags": [
-    "note-taking",
-    "research",
-    "experiments",
-    "knowledge-base",
-    "documentation",
-    "productivity",
-    "ml",
-    "data-science"
-  ]
+  }
 }
