@@ -17,8 +17,8 @@
       "category": "productivity",
       "keywords": ["notes", "research", "experiments", "knowledge-management", "documentation"],
       "source": {
-        "source": "github",
-        "repo": "mrariden/claude-lab-notebook"
+        "source": "url",
+        "url": "https://github.com/mrariden/claude-lab-notebook.git"
       }
     }
   ]
