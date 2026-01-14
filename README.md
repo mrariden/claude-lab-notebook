@@ -13,55 +13,76 @@ Adds four slash commands to Claude Code:
 
 ## Installation
 
-### Option 1: Copy to Project (Recommended for Single Project)
+### Option 1: Claude Code Marketplace (Recommended)
+
+The easiest way to install is via the Claude Code plugin marketplace:
+
+```bash
+# Add the marketplace (one-time setup)
+/plugin marketplace add mrariden/claude-lab-notebook
+
+# Install the plugin
+/plugin install claude-lab-notebook@claude-lab-notebook
+```
+
+That's it! The commands are now available in all your projects.
+
+To update the plugin later:
+```bash
+/plugin marketplace update claude-lab-notebook
+```
+
+For more information on Claude Code marketplaces, see the [official documentation](https://code.claude.com/docs/en/plugin-marketplaces).
+
+### Option 2: Manual Installation
+
+<details>
+<summary>Click to expand manual installation options</summary>
+
+#### Copy to a Single Project
 
 ```bash
 # In your project root
 mkdir -p .claude/commands
 cd .claude/commands
 
-# Copy the command files
-curl -O https://[your-repo]/setup-notes.md
-curl -O https://[your-repo]/create-note.md
-curl -O https://[your-repo]/update-index.md
+# Download command files
+curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/setup-notes.md
+curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/create-note.md
+curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/update-index.md
+curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/migrate-notes.md
 ```
 
-### Option 2: Install Globally (For All Projects)
+#### Install Globally (All Projects)
 
 ```bash
 # In your home directory
 mkdir -p ~/.claude/commands
 cd ~/.claude/commands
 
-# Copy the command files
-curl -O https://[your-repo]/setup-notes.md
-curl -O https://[your-repo]/create-note.md
-curl -O https://[your-repo]/update-index.md
+# Download command files
+curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/setup-notes.md
+curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/create-note.md
+curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/update-index.md
+curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/migrate-notes.md
 ```
 
-### Option 3: Clone This Repository
+#### Clone the Repository
 
 ```bash
 # Clone the plugin
-git clone https://[your-repo]/note-taking-plugin.git
+git clone https://github.com/mrariden/claude-lab-notebook.git
 
 # Install to global commands
-cp note-taking-plugin/.claude/commands/* ~/.claude/commands/
+cp claude-lab-notebook/.claude/commands/* ~/.claude/commands/
 
-# Or install to project
+# Or install to a specific project
 cd your-project
 mkdir -p .claude/commands
-cp path/to/note-taking-plugin/.claude/commands/* .claude/commands/
+cp path/to/claude-lab-notebook/.claude/commands/* .claude/commands/
 ```
 
-### Option 4: Use the Setup Script
-
-```bash
-# Download and run the automated setup script
-curl -O https://[your-repo]/setup-notes.sh
-chmod +x setup-notes.sh
-./setup-notes.sh /path/to/your/project
-```
+</details>
 
 ## Quick Start
 
@@ -508,7 +529,7 @@ Improvements welcome! Consider:
 
 ## License
 
-Free to use and modify for your projects.
+MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
