@@ -6,20 +6,40 @@ This system helps you capture and retrieve experimental knowledge efficiently us
 
 ## 5-Minute Setup
 
-### 1. Copy files to your project root
+### Option A: Using the Plugin (Recommended)
+
+```
+# In Claude Code, run:
+/setup-notes
+```
+
+That's it! The command creates everything you need:
+- `CLAUDE.md` - Protocol instructions
+- `notes/` - Complete directory structure
+- `templates/` - Note templates
+- Starter files (INDEX.md, quick-reference.md)
+
+**Have existing notes?** Run `/migrate-notes` after setup to organize them.
+
+### Option B: Manual Setup
+
+<details>
+<summary>Click to expand manual setup steps</summary>
+
+#### 1. Copy files to your project root
 ```bash
 # Copy these files to your project root:
 # - CLAUDE.md (the protocol)
 # - templates/ directory (note templates)
 ```
 
-### 2. Create directory structure
+#### 2. Create directory structure
 ```bash
 mkdir -p notes/{experiments,decisions,troubleshooting,research}
 mkdir -p configs
 ```
 
-### 3. Create starter files
+#### 3. Create starter files
 ```bash
 # Create INDEX.md
 cat > notes/INDEX.md << 'EOF'
@@ -33,7 +53,7 @@ Last updated: $(date +%Y-%m-%d)
 ## What Works (Summary)
 - Add findings here as you discover them
 
-## Known Issues  
+## Known Issues
 - Add problems here as you encounter them
 
 ## Recent Activity (Last 7 days)
@@ -64,7 +84,9 @@ Last updated: $(date +%Y-%m-%d)
 EOF
 ```
 
-### 4. Start using it
+</details>
+
+### Start using it
 In your next Claude Code session, Claude will automatically read CLAUDE.md and follow the protocol.
 
 ## Your First Session
@@ -97,10 +119,12 @@ Claude: "Should I read experiments/2025-01-10-lr-sweep.md for context?"
 
 **Evening:**
 ```
-You: "Create an experiment note"
+You: /create-note
+Claude: "What type? (experiment/decision/troubleshooting)"
+You: experiment
 Claude: [Creates notes/experiments/2025-01-15-lr-test.md]
-Claude: "Should I update INDEX.md? Found LR=0.0002 works better."
-You: "Yes"
+Claude: "Should I update INDEX.md?"
+You: yes
 Claude: [Updates INDEX.md with new finding]
 ```
 
@@ -241,14 +265,19 @@ training:
 
 ## Migrating Existing Notes
 
-If you have existing notes, see MIGRATION-GUIDE.md for detailed steps.
+If you have existing notes, use the `/migrate-notes` command:
 
-**Quick migration:**
-1. Tell Claude: "Help me migrate my notes"
-2. Claude scans your existing notes
-3. Claude proposes categorization
-4. You approve
-5. Claude executes migration and creates INDEX.md
+```
+You: /migrate-notes
+Claude: "Where are your existing notes located?"
+You: ./docs
+Claude: [Scans and analyzes files]
+Claude: [Presents migration plan]
+You: yes
+Claude: [Moves files, updates INDEX.md]
+```
+
+For detailed manual migration steps, see MIGRATION-GUIDE.md.
 
 ## Tips for Success
 
@@ -272,14 +301,12 @@ Ask Claude Code:
 
 ## Next Steps
 
-1. ✅ Set up directory structure
-2. ✅ Create INDEX.md and quick-reference.md
-3. ✅ Copy templates
-4. ✅ Put CLAUDE.md in project root
-5. ⬜ Do your next work session
-6. ⬜ Create your first experiment note
-7. ⬜ Update INDEX.md with findings
-8. ⬜ Build the habit
+1. ⬜ Run `/setup-notes` to initialize
+2. ⬜ Run `/migrate-notes` if you have existing notes
+3. ⬜ Do your next work session
+4. ⬜ Run `/create-note` to document findings
+5. ⬜ Run `/update-index` to maintain organization
+6. ⬜ Build the habit
 
 ---
 

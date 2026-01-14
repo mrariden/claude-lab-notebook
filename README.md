@@ -4,11 +4,12 @@ A Claude Code plugin that automates setup and management of a progressive disclo
 
 ## What This Plugin Does
 
-Adds three slash commands to Claude Code:
+Adds four slash commands to Claude Code:
 
 1. **`/setup-notes`** - Initialize the note-taking system in your project
 2. **`/create-note`** - Create properly formatted experiment/decision/troubleshooting notes
 3. **`/update-index`** - Maintain your knowledge base index
+4. **`/migrate-notes`** - Migrate existing notes into the organized structure
 
 ## Installation
 
@@ -176,6 +177,38 @@ Claude: "Should I save these changes?"
 - Extracts common patterns
 - Groups related findings
 - Proposes "What Works" and "Known Issues" updates
+
+### /migrate-notes
+
+Helps migrate existing notes into the organized lab notebook structure.
+
+**Usage:**
+```
+You: /migrate-notes
+Claude: "Where are your existing notes located?"
+You: ./docs or scattered in project root
+Claude: [Scans for markdown files]
+Claude: [Analyzes each file to determine type]
+Claude: [Presents migration plan]
+Claude: "Proceed with migration?"
+You: yes
+Claude: [Archives originals, moves to proper locations]
+Claude: [Updates INDEX.md with findings]
+```
+
+**What it does:**
+1. Discovers existing markdown notes in your project
+2. Analyzes each note to determine type (experiment/decision/troubleshooting/research)
+3. Extracts or estimates dates from git history
+4. Presents a migration plan for your approval
+5. Archives originals to `notes/archive/pre-migration/`
+6. Restructures content using proper templates
+7. Updates INDEX.md with key findings
+
+**When to use:**
+- You have existing notes before installing this plugin
+- You're adopting the system in an established project
+- You want to reorganize scattered documentation
 
 ## How It Works
 
@@ -435,7 +468,7 @@ Add sections to templates:
 ## FAQ
 
 **Q: Does this work with existing notes?**
-A: Yes! Run `/setup-notes` then manually move your existing notes into the appropriate directories. Use `/update-index` to build the index.
+A: Yes! Run `/setup-notes` first, then use `/migrate-notes` to automatically analyze, categorize, and move your existing notes into the proper structure.
 
 **Q: Can I use this without Claude Code?**
 A: The note structure works standalone. You'll just create notes manually instead of using `/create-note`.
@@ -447,7 +480,7 @@ A: Add custom templates to `templates/` and modify the `/create-note` command to
 A: Commit `CLAUDE.md`, `notes/`, and `templates/` to git. Team members clone and install the plugin commands.
 
 **Q: Can I migrate from Obsidian/Notion?**
-A: Yes. Export to markdown, organize into the directory structure, then run `/update-index` to build INDEX.md.
+A: Yes. Export to markdown, then run `/migrate-notes` to automatically categorize and organize them into the proper structure.
 
 ## Files Included
 
@@ -457,8 +490,11 @@ claude-lab-notebook/
 │   └── commands/
 │       ├── setup-notes.md      # /setup-notes command
 │       ├── create-note.md      # /create-note command
-│       └── update-index.md     # /update-index command
-├── setup-notes.sh              # Automated bash script
+│       ├── update-index.md     # /update-index command
+│       └── migrate-notes.md    # /migrate-notes command
+├── templates/                  # Note templates
+├── QUICK-START.md              # Quick start guide
+├── MIGRATION-GUIDE.md          # Detailed migration instructions
 └── README.md                   # This file
 ```
 
