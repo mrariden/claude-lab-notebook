@@ -19,27 +19,5 @@
     "progressive-disclosure",
     "lab-notebook"
   ],
-  "category": "productivity",
-  "commands": ".claude/commands",
-  "features": [
-    "Progressive disclosure - loads only what's needed",
-    "Three note types: experiments, decisions, troubleshooting",
-    "Hierarchical organization (INDEX → quick-ref → detailed notes)",
-    "Template-based note creation with auto-dating",
-    "Smart index consolidation and pattern extraction",
-    "Context-efficient: ~5K tokens vs 50K+ loading all notes",
-    "Chronological experiments, topical decisions",
-    "Failed approaches as first-class documentation"
-  ],
-  "requirements": {
-    "claudeCode": ">=2.0.0"
-  },
-  "setup": {
-    "postInstall": "Run /setup-notes in your project directory to initialize the system"
-  },
-  "documentation": {
-    "readme": "README.md",
-    "quickstart": "QUICK-START.md",
-    "migration": "MIGRATION-GUIDE.md"
-  }
+  "commands": ["./.claude/commands/"]
 }
