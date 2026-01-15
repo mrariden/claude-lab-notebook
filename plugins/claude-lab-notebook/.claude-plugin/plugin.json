@@ -18,6 +18,5 @@
     "markdown",
     "progressive-disclosure",
     "lab-notebook"
-  ],
-  "commands": ["./.claude/commands/"]
+  ]
 }
