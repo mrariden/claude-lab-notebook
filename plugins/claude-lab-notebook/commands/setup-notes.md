@@ -1,6 +1,7 @@
 ---
-name: setup-notes
 description: Initialize the note-taking protocol in the current project
+argument-hint: <required-arg> [optional-arg]
+allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
 
 You are helping the user set up the note-taking protocol for their project.

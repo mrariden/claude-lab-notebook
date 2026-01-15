@@ -1,6 +1,7 @@
 ---
-name: create-note
 description: Create a new experiment, decision, or troubleshooting note using templates
+argument-hint: <required-arg> [optional-arg]
+allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
 
 You are helping the user create a properly formatted note.

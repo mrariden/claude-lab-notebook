@@ -1,6 +1,7 @@
 ---
-name: update-index
 description: Update INDEX.md with recent findings and organize notes
+argument-hint: <required-arg> [optional-arg]
+allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
 
 You are helping the user maintain their knowledge base index.

@@ -1,6 +1,7 @@
 ---
-name: migrate-notes
 description: Migrate existing notes into the organized lab notebook structure
+argument-hint: <required-arg> [optional-arg]
+allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
 
 # Migrate Existing Notes
