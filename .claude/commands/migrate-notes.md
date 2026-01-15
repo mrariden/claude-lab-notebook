@@ -1,3 +1,8 @@
+---
+name: migrate-notes
+description: Migrate existing notes into the organized lab notebook structure
+---
+
 # Migrate Existing Notes
 
 Help the user migrate their existing notes to the lab notebook structure.

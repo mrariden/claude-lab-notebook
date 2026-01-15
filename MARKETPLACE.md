@@ -20,18 +20,11 @@ Progressive disclosure note-taking system designed for research, experiments, an
 ## Installation
 
 ```bash
-/plugin marketplace add yourusername/experiment-notebook
-/plugin install experiment-notebook
+/plugin marketplace add mrariden/claude-lab-notebook
+/plugin install claude-lab-notebook
+```
 ```
 
-Or install commands manually:
-```bash
-mkdir -p .claude/commands
-cd .claude/commands
-curl -O https://raw.githubusercontent.com/yourusername/experiment-notebook/main/.claude/commands/setup-notes.md
-curl -O https://raw.githubusercontent.com/yourusername/experiment-notebook/main/.claude/commands/create-note.md
-curl -O https://raw.githubusercontent.com/yourusername/experiment-notebook/main/.claude/commands/update-index.md
-```
 
 ## Quick Start
 
@@ -290,14 +283,14 @@ See the repository for:
 
 ## Support & Contributing
 
-- 🐛 **Issues:** [GitHub Issues](https://github.com/yourusername/experiment-notebook/issues)
+- 🐛 **Issues:** [GitHub Issues](https://github.com/mrariden/claude-lab-notebook/issues)
 - 💡 **Feature Requests:** Open an issue with enhancement tag
 - 🤝 **Contribute:** PRs welcome! See CONTRIBUTING.md
 - 📖 **Docs:** Full documentation in repo
 
 ## Author
 
-Created by [Your Name]  
+Created by Michael Rariden 
 Inspired by Sionic AI's skills system and scientific lab notebooks
 
 ## License
