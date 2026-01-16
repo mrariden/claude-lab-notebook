@@ -103,18 +103,39 @@ Valid types: `experiment`, `decision`, `troubleshooting`, `research`, or any cus
    - Place in correct directory
    - Use proper filename format
 
-5. **Ask about updates**
-   - "Should I update notes/INDEX.md to reference this note?"
-   - "Should I update notes/quick-reference.md?" (if this changes current best practice)
+5. **Gather INDEX metadata**
 
-6. **Update files if requested**
-   
-   **For INDEX.md:**
-   - Add to appropriate section (Experiments/Decisions/Troubleshooting)
-   - Add to "Recent Activity" with today's date
-   - Add one-line summary
-   
-   **For quick-reference.md:**
+   Every note MUST be added to INDEX.md. Ask the user:
+
+   a. "What tags describe this? (comma-separated, e.g., 'optimizer, adamw, training')"
+   b. "One-line key finding or summary?"
+
+   These make the INDEX searchable without opening individual notes.
+
+6. **Update INDEX.md (always)**
+
+   Add entry to the appropriate section with this format:
+
+   ```markdown
+   **YYYY-MM-DD: [Note Title]**
+   - Tags: tag1, tag2, tag3
+   - Finding: One-line summary of key insight
+   - File: [relative/path/to/note.md](relative/path/to/note.md)
+   ```
+
+   **Section mapping:**
+   - experiment → "## All Experiments"
+   - decision → "## All Decisions"
+   - troubleshooting → "## All Troubleshooting Guides"
+   - research → "## All Research"
+
+   Also add to "## Recent Activity" with today's date and title.
+
+7. **Optionally update quick-reference.md**
+
+   Ask: "Did this change current best practices? Should I update quick-reference.md?"
+
+   If yes:
    - Add to "What Works" if successful approach
    - Add to "Don't Do These" if failed approach
    - Update "Last Updated" section
@@ -191,13 +212,16 @@ Confirm to user:
 
 📝 Note type: {type}
 📍 Location: notes/{subdirectory}/{filename}
+🏷️ Tags: {tags}
+📋 Finding: {one-line finding}
+
+✅ Added to INDEX.md under '{section}'
 
 Next steps:
-- [ ] Fill in remaining details
+- [ ] Fill in remaining details in the note
 - [ ] Link related notes in References section
-- [ ] {Updated INDEX.md / Skipped INDEX update}
 
-💡 This note is now part of your knowledge base. I'll reference it in future sessions when relevant."
+💡 This note is now searchable via INDEX.md. I'll reference it in future sessions when relevant."
 
 ## Error Handling
 

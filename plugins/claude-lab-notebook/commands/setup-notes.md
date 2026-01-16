@@ -280,22 +280,46 @@ Last updated: [TODAY'S DATE]
 - [Quick Reference](quick-reference.md)
 
 ## What Works (Summary)
-- Add successful approaches here
+- Add successful approaches here as you discover them
 
 ## Known Issues
-- Add problems here
+- Add problems here as you encounter them
 
 ## Recent Activity (Last 7 days)
 - [TODAY]: Initialized note-taking system
 
 ## All Experiments
-<!-- Chronological list -->
+<!-- Each entry has: Title, Tags, Finding, File link -->
+<!-- Example:
+**2025-01-15: Optimizer comparison**
+- Tags: optimizer, adamw, sgd, training
+- Finding: AdamW 15% better than SGD for this architecture
+- File: [experiments/2025-01-15-optimizer-comparison.md](experiments/2025-01-15-optimizer-comparison.md)
+-->
 
 ## All Decisions
-<!-- Topical list -->
+<!-- Example:
+**2025-01-14: Choose AdamW optimizer**
+- Tags: optimizer, architecture, performance
+- Finding: AdamW chosen for stability and performance
+- File: [decisions/2025-01-14-optimizer-choice.md](decisions/2025-01-14-optimizer-choice.md)
+-->
 
 ## All Troubleshooting Guides
-<!-- Topical list -->
+<!-- Example:
+**CUDA out of memory errors**
+- Tags: cuda, memory, gpu, oom
+- Finding: Reduce batch_size to 32 or lower for RTX 3090
+- File: [troubleshooting/cuda-memory-errors.md](troubleshooting/cuda-memory-errors.md)
+-->
+
+## All Research
+<!-- Example:
+**Attention mechanisms**
+- Tags: attention, transformer, papers
+- Finding: Multi-head attention key for performance
+- File: [research/attention-mechanisms.md](research/attention-mechanisms.md)
+-->
 ```
 
 ## quick-reference.md Template
