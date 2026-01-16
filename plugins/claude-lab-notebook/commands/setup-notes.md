@@ -268,6 +268,61 @@ If user has existing markdown notes not yet in this structure:
 **Remember**: This system optimizes for **findability over storage**. Every note should answer: "How will future-me find this when I need it?"
 ```
 
+## INDEX.md Template
+
+```markdown
+# Project Notes Index
+
+Last updated: [TODAY'S DATE]
+
+## Quick Links
+- [Current Best Config](../configs/)
+- [Quick Reference](quick-reference.md)
+
+## What Works (Summary)
+- Add successful approaches here
+
+## Known Issues
+- Add problems here
+
+## Recent Activity (Last 7 days)
+- [TODAY]: Initialized note-taking system
+
+## All Experiments
+<!-- Chronological list -->
+
+## All Decisions
+<!-- Topical list -->
+
+## All Troubleshooting Guides
+<!-- Topical list -->
+```
+
+## quick-reference.md Template
+
+```markdown
+# Quick Reference - Current Project State
+
+Last updated: [TODAY'S DATE]
+
+## What's Working Right Now
+```yaml
+# Add current working config
+```
+
+## Don't Do These (Failed Approaches)
+- ❌ Add failures here
+
+## Current Best Practices
+- ✓ Add successes here
+
+## Open Questions
+- [ ] Things to investigate
+
+## Last Updated
+- [TODAY]: Initialized system
+```
+
 ## After Setup
 
 Tell the user:
