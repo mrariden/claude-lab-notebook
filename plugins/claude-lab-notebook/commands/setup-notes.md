@@ -60,7 +60,9 @@ Create the complete directory structure and files for the progressive disclosure
 Use this EXACT content for .claude/rules/note-taking-protocol.md:
 
 ```markdown
-# Project Note-Taking Protocol
+# Note-Taking Protocol
+
+*This file is automatically loaded by Claude Code from .claude/rules/*
 
 ## Context Efficiency Protocol (CRITICAL)
 
@@ -72,36 +74,205 @@ Use this EXACT content for .claude/rules/note-taking-protocol.md:
 4. **Use view tool with line ranges** when you only need specific sections
 5. **Never load** entire `notes/` directory at once
 
+## Directory Structure
+
+~~~
+project/
+├── .claude/
+│   └── rules/
+│       └── note-taking-protocol.md   # This file (auto-loaded)
+├── notes/
+│   ├── INDEX.md                       # Master index - READ FIRST
+│   ├── quick-reference.md             # Current working state
+│   ├── experiments/                   # Chronological experiment logs
+│   │   └── YYYY-MM-DD-description.md
+│   ├── decisions/                     # Why key choices were made
+│   │   └── YYYY-MM-topic.md
+│   ├── troubleshooting/              # Error patterns & solutions
+│   │   └── topic-errors.md
+│   └── research/                      # External references
+│       └── topic.md
+├── configs/                           # Working configurations
+└── templates/                         # Note templates
+~~~
+
 ## Workflow for Every Session
 
 ### Session Start
-1. Read `notes/INDEX.md` - mandatory
-2. Read `notes/quick-reference.md` - current state
-3. Ask user: "What are you working on today?"
-4. Based on answer, suggest relevant notes to load
-5. Load only relevant files using `view` tool
+
+1. **Read `notes/INDEX.md`** - This is mandatory, always do this first
+2. **Read `notes/quick-reference.md`** - Get current state
+3. **Ask user**: "What are you working on today?"
+4. **Based on their answer**, suggest relevant notes to load:
+   - "Should I read `experiments/2025-01-10-lr-sweep.md` for context on learning rates?"
+   - "Should I check `troubleshooting/cuda-errors.md` for GPU issues?"
+5. **Load only relevant files** using the `view` tool
+
+### During Work
+
+- Keep rough notes of what you're trying
+- Document failures as they happen (these are valuable)
+- Track configuration changes
 
 ### Session End
-Ask user which type of note to create:
-1. Experiment note → `notes/experiments/YYYY-MM-DD-description.md`
-2. Decision note → `notes/decisions/YYYY-MM-topic.md`
-3. Troubleshooting note → `notes/troubleshooting/topic-errors.md`
 
-After creating note, ask:
-- "Should I update `notes/INDEX.md`?"
-- "Should I update `notes/quick-reference.md`?"
+**Ask user which type of note to create:**
+
+1. **Experiment note** (most common)
+   - Use `templates/experiment-template.md`
+   - Create in `notes/experiments/YYYY-MM-DD-description.md`
+   - Document: goal, what tried, what worked, what failed, next steps
+
+2. **Decision note** (for architectural/design choices)
+   - Use `templates/decision-template.md`
+   - Create in `notes/decisions/YYYY-MM-topic.md`
+   - Document: context, options considered, decision, rationale, trade-offs
+
+3. **Troubleshooting note** (for error patterns)
+   - Use `templates/troubleshooting-template.md`
+   - Create in `notes/troubleshooting/topic-errors.md`
+   - Document: symptom, cause, solution, prevention
+
+**After creating note, ask:**
+- "Should I update `notes/INDEX.md`?" (if significant finding)
+- "Should I update `notes/quick-reference.md`?" (if current best practice changed)
+
+## Context Management Rules
+
+### When to Load Additional Files
+
+**User says:** "I'm working on learning rates"
+**You respond:** "I see from INDEX.md we did LR experiments on 2025-01-10. Should I read `experiments/2025-01-10-lr-sweep.md` for details?"
+
+**User says:** "I'm getting a CUDA error"
+**You respond:** "Should I check `troubleshooting/cuda-errors.md` for known solutions?"
+
+**User says:** "Why did we choose this architecture?"
+**You respond:** "Should I read `decisions/2025-01-12-architecture.md` for the rationale?"
+
+### What NOT to Do
+
+❌ Don't say: "Let me read all your experiment files"
+❌ Don't load multiple files without asking
+❌ Don't read entire files when you only need a section
+❌ Don't skip reading INDEX.md (it's always required)
+
+✅ Do say: "Based on INDEX.md, I found relevant info in X. Should I read it?"
+✅ Do use `view` tool with line ranges for large files
+✅ Do ask user to specify which time period of experiments matters
+✅ Do read INDEX.md and quick-reference.md at session start
 
 ## File Naming Conventions
-- Experiments: `YYYY-MM-DD-brief-description.md` (chronological)
-- Decisions: `YYYY-MM-topic-name.md` (topical)
-- Troubleshooting: `topic-name-errors.md` (topical)
-- Research: `topic-name.md` (topical)
+
+- **Experiments**: `YYYY-MM-DD-brief-description.md` (chronological)
+- **Decisions**: `YYYY-MM-topic-name.md` (topical)
+- **Troubleshooting**: `topic-name-errors.md` or `error-type.md` (topical)
+- **Research**: `topic-name.md` or `paper-name.md` (topical)
+
+Always use lowercase with hyphens, no spaces.
+
+## File Format Standards
+
+### Experiment Notes
+
+- Goal: What you were trying to achieve
+- What I Tried: Each approach with results
+- Key Findings: What worked, what surprised you
+- **Failed Approaches**: Table format (most valuable section!)
+- Configuration Used: Copy-pasteable config
+- Next Steps: Follow-up tasks
+- References: Links to related notes
+
+### Decision Notes
+
+- Context: Why decision was needed
+- Options Considered: Pros/cons for each
+- Decision: What was chosen
+- Rationale: Why it was chosen
+- Trade-offs: What you're giving up
+- When to Revisit: Conditions for reconsidering
+
+### Troubleshooting Notes
+
+- Symptom: Exact error message
+- Cause: Why it happens
+- Solution: Step-by-step fix
+- Prevention: How to avoid
+- Related Issues: Cross-references
+
+## Progressive Disclosure in Practice
+
+**Example efficient session:**
+
+~~~
+[Session starts]
+Claude: [Reads notes/INDEX.md - 1K tokens]
+Claude: [Reads notes/quick-reference.md - 500 tokens]
+Claude: "I've loaded your project notes index. What are you working on?"
+
+User: "I want to improve training speed"
+
+Claude: "From INDEX.md, I see we explored batch size on 2025-01-09
+and data loading on 2025-01-11. Should I read those experiments?"
+
+User: "Yes, read the batch size one"
+
+Claude: [Uses view on notes/experiments/2025-01-09-batch-size.md - 2K tokens]
+Claude: "Based on that experiment, batch_size=32 works best.
+Going higher causes OOM. Want to try a different approach?"
+
+[Works on task...]
+
+[Session ends]
+Claude: "Should I create an experiment note for today's work?"
+
+User: "Yes"
+
+Claude: [Creates notes/experiments/2025-01-15-dataloader-optimization.md]
+Claude: "The experiment note has been created. Should I update INDEX.md
+since we found DataLoader num_workers=4 is optimal?"
+
+Total context used: ~5K tokens instead of 50K+ if all files loaded
+~~~
 
 ## Critical Reminders
-1. INDEX.md is your map - always read it first
-2. Failed attempts are valuable - document thoroughly
-3. Be specific - exact errors, exact parameters
-4. Ask before loading - don't waste context
+
+1. **INDEX.md is your map** - Always read it first
+2. **Failed attempts are valuable** - Document them thoroughly
+3. **Be specific** - "LR=0.001 causes NaN" not "LR too high"
+4. **Include exact errors** - Full stack traces, not summaries
+5. **Ask before loading** - Don't waste context on irrelevant files
+6. **Use line ranges** - `view file.md 10 50` for specific sections
+7. **Date everything** - Chronology matters for understanding evolution
+8. **Copy-pasteable configs** - Not vague advice like "use small learning rate"
+9. **Link related notes** - Build a knowledge graph
+10. **Update quick-reference** - Keep current best practices fresh
+
+## Integration with Other Tools
+
+- **Configs**: Reference actual config files, don't duplicate
+- **Code**: Link to specific files/functions when relevant
+- **External tools**: Note tool versions (W&B, TensorBoard, etc.)
+- **Hardware**: Document GPU models, RAM, when relevant
+
+## When User Has Existing Notes
+
+If user has existing markdown notes not yet in this structure:
+
+1. **Ask to see** their current notes directory
+2. **Propose migration plan**:
+   - Create notes/ directory structure
+   - Sort existing notes by type (experiment/decision/troubleshooting)
+   - Add dates to filenames where possible
+   - Create INDEX.md by scanning existing notes
+   - Create quick-reference.md from current state
+3. **Execute migration** with user approval
+4. **Verify** INDEX.md links work
+5. **Test** by asking user a question and using new structure
+
+---
+
+**Remember**: This system optimizes for **findability over storage**. Every note should answer: "How will future-me find this when I need it?"
 ```
 
 ## Templates Content
