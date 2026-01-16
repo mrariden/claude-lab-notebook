@@ -1,6 +1,6 @@
 ---
 description: Migrate existing notes into the organized lab notebook structure
-argument-hint: <required-arg> [optional-arg]
+argument-hint: [source-path]
 allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
 
@@ -12,9 +12,13 @@ Help the user migrate their existing notes to the lab notebook structure.
 
 Guide the user through migrating their existing notes into the organized note-taking protocol.
 
+## Arguments
+
+If the user provided a source path (e.g., `/migrate-notes ./docs`), use that path directly instead of asking.
+
 ## Step 1: Discover Existing Notes
 
-First, ask the user where their existing notes are located. Common locations:
+If a source path was provided as argument, use it. Otherwise, ask the user where their existing notes are located. Common locations:
 - `./notes/` or `./docs/`
 - `./README.md` with embedded notes
 - Scattered markdown files in project root

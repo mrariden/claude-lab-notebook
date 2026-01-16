@@ -54,10 +54,13 @@ Progressive disclosure note-taking system designed for research, experiments, an
 **Creates:**
 - `.claude/rules/note-taking-protocol.md` - Protocol instructions for Claude
 - `notes/INDEX.md` - Master knowledge index
-- `notes/quick-reference.md` - Current working state  
+- `notes/quick-reference.md` - Current working state
 - `notes/{experiments,decisions,troubleshooting,research}/` - Organized directories
-- `templates/` - Note templates with proper structure
 - `configs/` - Configuration file storage
+
+**Built-in templates provided:** experiment, decision, troubleshooting
+
+**Optional:** Create `.claude/templates/` for custom templates that override built-in
 
 **Usage:**
 ```
@@ -139,8 +142,9 @@ Total: ~4K tokens for entire session
 ```
 your-project/
 ├── .claude/
-│   └── rules/
-│       └── note-taking-protocol.md    # Protocol Claude follows (auto-loaded)
+│   ├── rules/
+│   │   └── note-taking-protocol.md    # Protocol Claude follows (auto-loaded)
+│   └── templates/                     # Optional: custom templates (override built-in)
 ├── notes/
 │   ├── INDEX.md                       # Master index (read first, always)
 │   ├── quick-reference.md             # Current best config
@@ -152,8 +156,7 @@ your-project/
 │   │   └── topic-errors.md
 │   └── research/                      # External references
 │       └── topic.md
-├── configs/                           # Working configurations
-└── templates/                         # Note templates
+└── configs/                           # Working configurations
 ```
 
 ### Note Templates

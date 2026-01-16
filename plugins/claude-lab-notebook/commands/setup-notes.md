@@ -1,6 +1,5 @@
 ---
 description: Initialize the note-taking protocol in the current project
-argument-hint: <required-arg> [optional-arg]
 allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
 
@@ -20,7 +19,6 @@ Create the complete directory structure and files for the progressive disclosure
    mkdir -p .claude/rules
    mkdir -p notes/{experiments,decisions,troubleshooting,research}
    mkdir -p configs
-   mkdir -p templates
    ```
 
 3. **Create .claude/rules/note-taking-protocol.md**
@@ -38,19 +36,14 @@ Create the complete directory structure and files for the progressive disclosure
    - Dated with current date
    - Sections for what works, what doesn't, open questions
 
-6. **Create templates**
-   - templates/experiment-template.md
-   - templates/decision-template.md
-   - templates/troubleshooting-template.md
-
-7. **Create notes/README.md**
+6. **Create notes/README.md**
    - Quick guide to the system
    - How to use the directories
 
-8. **Optional: Add to .gitignore**
+7. **Optional: Add to .gitignore**
    - Ask user if they want notes/local/ in .gitignore for personal notes
 
-9. **Confirm completion**
+8. **Confirm completion**
    - List all created files
    - Explain next steps
    - Remind them Claude will auto-read .claude/rules/ on next session
@@ -79,6 +72,7 @@ Use this EXACT content for .claude/rules/note-taking-protocol.md:
 ~~~
 project/
 ├── .claude/
+│   ├── templates/                    # Notes template dir 
 │   └── rules/
 │       └── note-taking-protocol.md   # This file (auto-loaded)
 ├── notes/
@@ -92,8 +86,7 @@ project/
 │   │   └── topic-errors.md
 │   └── research/                      # External references
 │       └── topic.md
-├── configs/                           # Working configurations
-└── templates/                         # Note templates
+└── configs/                           # Working configurations
 ~~~
 
 ## Workflow for Every Session
@@ -275,84 +268,6 @@ If user has existing markdown notes not yet in this structure:
 **Remember**: This system optimizes for **findability over storage**. Every note should answer: "How will future-me find this when I need it?"
 ```
 
-## Templates Content
-
-### experiment-template.md
-```markdown
-# YYYY-MM-DD: Descriptive Title
-
-## Goal
-What I was trying to achieve
-
-## What I Tried
-1. Approach A → Result
-2. Approach B → Result
-
-## Key Findings
-- What worked
-- What surprised me
-
-## Failed Approaches (CRITICAL)
-| What I Tried | Why It Failed | Lesson Learned |
-|--------------|---------------|----------------|
-| Thing | Error | Takeaway |
-
-## Configuration Used
-```yaml
-# Copy-pasteable config
-```
-
-## Next Steps
-- [ ] Follow-up task
-```
-
-### decision-template.md
-```markdown
-# Decision: Title
-
-Date: YYYY-MM-DD
-
-## Context
-Why decision needed
-
-## Options Considered
-1. Option A - Pros/Cons
-2. Option B - Pros/Cons
-
-## Decision
-**Chose: X**
-
-## Rationale
-- Reason 1
-- Reason 2
-
-## Trade-offs
-- What we're giving up
-
-## When to Revisit
-- Conditions for reconsideration
-```
-
-### troubleshooting-template.md
-```markdown
-# Troubleshooting: Error Name
-
-## Symptom
-```
-Exact error message
-```
-
-## Cause
-Why this happens
-
-## Solution
-1. Step one
-2. Step two
-
-## Prevention
-- How to avoid
-```
-
 ## INDEX.md Template
 
 ```markdown
@@ -365,22 +280,46 @@ Last updated: [TODAY'S DATE]
 - [Quick Reference](quick-reference.md)
 
 ## What Works (Summary)
-- Add successful approaches here
+- Add successful approaches here as you discover them
 
-## Known Issues  
-- Add problems here
+## Known Issues
+- Add problems here as you encounter them
 
 ## Recent Activity (Last 7 days)
 - [TODAY]: Initialized note-taking system
 
 ## All Experiments
-<!-- Chronological list -->
+<!-- Each entry has: Title, Tags, Finding, File link -->
+<!-- Example:
+**2025-01-15: Optimizer comparison**
+- Tags: optimizer, adamw, sgd, training
+- Finding: AdamW 15% better than SGD for this architecture
+- File: [experiments/2025-01-15-optimizer-comparison.md](experiments/2025-01-15-optimizer-comparison.md)
+-->
 
 ## All Decisions
-<!-- Topical list -->
+<!-- Example:
+**2025-01-14: Choose AdamW optimizer**
+- Tags: optimizer, architecture, performance
+- Finding: AdamW chosen for stability and performance
+- File: [decisions/2025-01-14-optimizer-choice.md](decisions/2025-01-14-optimizer-choice.md)
+-->
 
 ## All Troubleshooting Guides
-<!-- Topical list -->
+<!-- Example:
+**CUDA out of memory errors**
+- Tags: cuda, memory, gpu, oom
+- Finding: Reduce batch_size to 32 or lower for RTX 3090
+- File: [troubleshooting/cuda-memory-errors.md](troubleshooting/cuda-memory-errors.md)
+-->
+
+## All Research
+<!-- Example:
+**Attention mechanisms**
+- Tags: attention, transformer, papers
+- Finding: Multi-head attention key for performance
+- File: [research/attention-mechanisms.md](research/attention-mechanisms.md)
+-->
 ```
 
 ## quick-reference.md Template
@@ -415,11 +354,27 @@ Tell the user:
 "✅ Note-taking protocol installed!
 
 📁 Created:
-- .claude/rules/note-taking-protocol.md (protocol instructions)
+- .claude/rules/note-taking-protocol.md (auto-loaded protocol)
 - notes/INDEX.md (your knowledge map)
 - notes/quick-reference.md (current state)
 - notes/{experiments,decisions,troubleshooting,research}/ (organized by type)
-- templates/ (note templates)
+- configs/ (configuration file storage)
+
+📝 Templates:
+Built-in templates available:
+- experiment-template
+- decision-template
+- troubleshooting-template
+
+💡 To customize templates (optional):
+Create .claude/templates/ and add your own:
+  mkdir -p .claude/templates
+  # Copy built-in to customize:
+  cp $PLUGIN_ROOT/templates/experiment-template.md .claude/templates/
+  # Or create new ones:
+  vim .claude/templates/my-custom-template.md
+  
+Custom templates override built-in templates with matching names.
 
 🚀 Next steps:
 1. Start your next Claude Code session

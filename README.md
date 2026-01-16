@@ -101,9 +101,8 @@ cp path/to/claude-lab-notebook/.claude/commands/* .claude/commands/
    
    This creates:
    - `.claude/rules/note-taking-protocol.md` - Protocol instructions
-   - `notes/` - Directory structure
-   - `templates/` - Note templates
-   - Starter files (INDEX.md, quick-reference.md)
+   - `notes/` - Directory structure with starter files (INDEX.md, quick-reference.md)
+   - `configs/` - Configuration file storage
 
 4. **Start using it**
    - Do your work
@@ -120,8 +119,9 @@ Initializes the complete note-taking system in your current project.
 ```
 your-project/
 ├── .claude/
-│   └── rules/
-│       └── note-taking-protocol.md    # Protocol Claude follows (auto-loaded)
+│   ├── rules/
+│   │   └── note-taking-protocol.md    # Protocol Claude follows (auto-loaded)
+│   └── templates/                     # Optional: custom templates (override built-in)
 ├── notes/
 │   ├── INDEX.md                       # Master knowledge index
 │   ├── quick-reference.md             # Current working state
@@ -129,11 +129,7 @@ your-project/
 │   ├── decisions/                     # Design decisions
 │   ├── troubleshooting/              # Error solutions
 │   └── research/                      # External references
-├── configs/                           # Configuration files
-└── templates/                         # Note templates
-    ├── experiment-template.md
-    ├── decision-template.md
-    └── troubleshooting-template.md
+└── configs/                           # Configuration files
 ```
 
 **Usage:**
@@ -360,18 +356,20 @@ batch_size=64 requires ~16GB VRAM, RTX 3090 has 15.78GB
 
 ### Custom Templates
 
-You can modify templates in `templates/` to match your workflow:
+The plugin provides built-in templates that work out of the box. To customize:
 
 ```bash
-# Edit experiment template
-vim templates/experiment-template.md
+# Create custom templates directory
+mkdir -p .claude/templates
 
-# Add custom sections
-# Remove sections you don't use
-# Change formatting
+# Copy a built-in template to customize
+# Or create your own from scratch
+vim .claude/templates/experiment-template.md
 ```
 
-Changes apply to all new notes created with `/create-note`.
+Custom templates in `.claude/templates/` override built-in templates with matching names.
+
+See [TEMPLATES.md](TEMPLATES.md) for detailed customization options.
 
 ### Integration with Other Tools
 
@@ -451,10 +449,10 @@ description: Review and consolidate this week's notes
 
 ### Extend Templates
 
-Add sections to templates:
+Create custom templates in `.claude/templates/`:
 
 ```markdown
-# templates/experiment-template.md
+# .claude/templates/experiment-template.md
 
 ## [Your Custom Section]
 - Custom field 1
@@ -496,10 +494,10 @@ A: Yes! Run `/setup-notes` first, then use `/migrate-notes` to automatically ana
 A: The note structure works standalone. You'll just create notes manually instead of using `/create-note`.
 
 **Q: What if I want different note types?**
-A: Add custom templates to `templates/` and modify the `/create-note` command to recognize them.
+A: Create custom templates in `.claude/templates/`. Any `{name}-template.md` file becomes a usable template type.
 
 **Q: How do I share with my team?**
-A: Commit `.claude/rules/`, `notes/`, and `templates/` to git. Team members clone and install the plugin commands.
+A: Commit `.claude/rules/`, `notes/`, and `.claude/templates/` (if customized) to git. Team members clone and install the plugin.
 
 **Q: Can I migrate from Obsidian/Notion?**
 A: Yes. Export to markdown, then run `/migrate-notes` to automatically categorize and organize them into the proper structure.
@@ -508,14 +506,17 @@ A: Yes. Export to markdown, then run `/migrate-notes` to automatically categoriz
 
 ```
 claude-lab-notebook/
-├── .claude/
+├── plugins/claude-lab-notebook/
+│   ├── .claude-plugin/
+│   │   └── plugin.json         # Plugin configuration
 │   └── commands/
 │       ├── setup-notes.md      # /setup-notes command
 │       ├── create-note.md      # /create-note command
 │       ├── update-index.md     # /update-index command
 │       └── migrate-notes.md    # /migrate-notes command
-├── templates/                  # Note templates
+├── templates/                  # Built-in note templates
 ├── QUICK-START.md              # Quick start guide
+├── TEMPLATES.md                # Template customization guide
 ├── MIGRATION-GUIDE.md          # Detailed migration instructions
 └── README.md                   # This file
 ```
