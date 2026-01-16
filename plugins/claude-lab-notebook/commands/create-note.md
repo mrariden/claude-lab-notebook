@@ -1,10 +1,33 @@
 ---
 description: Create a new experiment, decision, or troubleshooting note using templates
-argument-hint: <required-arg> [optional-arg]
+argument-hint: [type]
 allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
 
 You are helping the user create a properly formatted note.
+
+## Template Resolution
+
+Claude uses this logic to find templates:
+
+1. **Determine template name:**
+   - User says "experiment" or type == 'experiment'→ look for "experiment-template.md"
+   - User says "decision" or type == 'decision'→ look for "decision-template.md"
+   - User says "custom-type" → look for "custom-type-template.md"
+
+2. **Search paths (in order):**
+   a. `.claude/templates/{type}-template.md` (user custom)
+   b. `$PLUGIN_ROOT/templates/{type}-template.md` (built-in)
+
+3. **Use first found:**
+   - If found in .claude/templates/, use that (user override)
+   - Else if found in plugin templates/, use that (built-in)
+   - Else error: "Template not found"
+
+4. **Special handling:**
+   - User can create ANY template name
+   - Built-in templates always available as fallback
+   - User templates with same name override built-in
 
 ## Task
 
@@ -38,9 +61,35 @@ Guide the user through creating a note using the appropriate template.
    - Suggest filename: `notes/research/{topic}.md`
 
 3. **Load appropriate template**
-   - Read from `templates/{type}-template.md`
+
+   **Template resolution logic:**
+```bash
+   # First check user's custom templates
+   USER_TEMPLATE=".claude/templates/${type}-template.md"
+   PLUGIN_TEMPLATE="$CLAUDE_PLUGIN_ROOT/templates/${type}-template.md"
+   
+   if [ -f "$USER_TEMPLATE" ]; then
+       TEMPLATE_PATH="$USER_TEMPLATE"
+       TEMPLATE_SOURCE="custom"
+   elif [ -f "$PLUGIN_TEMPLATE" ]; then
+       TEMPLATE_PATH="$PLUGIN_TEMPLATE"
+       TEMPLATE_SOURCE="built-in"
+   else
+       echo "Error: Template '${type}-template.md' not found"
+       echo "Available templates:"
+       # List both user and plugin templates
+       exit 1
+   fi
+```
+   
+   **Read template:**
+   - Use `view` tool to read from $TEMPLATE_PATH
    - Fill in today's date automatically
    - Pre-fill what you can from conversation context
+   
+   **Inform user (optional):**
+   If using custom template, mention it:
+   "Using custom template from .claude/templates/"
 
 4. **Create the note**
    - Use `create_file` to write the note
