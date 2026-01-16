@@ -20,94 +20,12 @@ Create the new directory structure in your project root:
 ```bash
 mkdir -p notes/{experiments,decisions,troubleshooting,research}
 mkdir -p configs
-mkdir -p templates
+mkdir -p .claude/rules
 ```
 
-### Step 2: Create Templates
+**Note:** Templates are provided by the plugin automatically. You don't need to create them. If you want to customize templates, create `.claude/templates/` and add your custom versions there. See [TEMPLATES.md](TEMPLATES.md) for details.
 
-Copy these templates into your `templates/` directory:
-
-**templates/experiment-template.md**
-```markdown
-# YYYY-MM-DD: Descriptive Title
-
-## Goal
-What I was trying to achieve
-
-## What I Tried
-1. Approach A → Result
-2. Approach B → Result
-
-## Key Findings
-- What worked
-- What surprised me
-
-## Failed Approaches (CRITICAL)
-| What I Tried | Why It Failed | Lesson Learned |
-|--------------|---------------|----------------|
-| Thing | Error/symptom | Takeaway |
-
-## Configuration Used
-```yaml
-# Copy-pasteable config
-```
-
-## Next Steps
-- [ ] Follow-up task
-
-## References
-- Related: experiments/YYYY-MM-DD-file.md
-```
-
-**templates/decision-template.md**
-```markdown
-# Decision: Title
-
-Date: YYYY-MM-DD
-
-## Context
-Why decision needed
-
-## Options Considered
-1. Option A - Pros/Cons
-2. Option B - Pros/Cons
-
-## Decision
-**Chose: X**
-
-## Rationale
-- Reason 1
-- Reason 2
-
-## Trade-offs
-- What we're giving up
-
-## When to Revisit
-- Conditions for reconsideration
-```
-
-**templates/troubleshooting-template.md**
-```markdown
-# Troubleshooting: Error Name
-
-## Symptom
-Exact error message
-
-## Cause
-Why this happens
-
-## Solution
-1. Step one
-2. Step two
-
-## Prevention
-- How to avoid
-
-## Related Issues
-- Similar problems
-```
-
-### Step 3: Analyze Existing Notes
+### Step 2: Analyze Existing Notes
 
 For each existing note file, determine:
 
@@ -127,7 +45,7 @@ For each existing note file, determine:
    - These will go in INDEX.md
    - Extract "what works" and "what fails"
 
-### Step 4: Categorize and Rename
+### Step 3: Categorize and Rename
 
 **Example Migrations:**
 
@@ -149,7 +67,7 @@ Existing: `attention_paper_notes.md`
 → Category: Research
 → New location: `notes/research/attention-mechanisms.md`
 
-### Step 5: Migration Script Template
+### Step 4: Migration Script Template
 
 You can ask Claude Code to help with migration using this approach:
 
@@ -163,7 +81,7 @@ For each existing note:
 6. Update internal links if they reference moved files
 ```
 
-### Step 6: Create INDEX.md
+### Step 5: Create INDEX.md
 
 Scan all migrated notes and create the master index:
 
@@ -216,7 +134,7 @@ Last updated: YYYY-MM-DD
 - [Training Instability](troubleshooting/nan-loss-errors.md)
 ```
 
-### Step 7: Create quick-reference.md
+### Step 6: Create quick-reference.md
 
 Extract current working configuration and gotchas:
 
@@ -268,7 +186,7 @@ training:
 - 2025-01-12: Updated optimizer recommendation
 ```
 
-### Step 8: Update Internal Links
+### Step 7: Update Internal Links
 
 Search for references to old filenames and update them:
 
@@ -280,7 +198,7 @@ grep -r "old-filename.md" notes/
 # old-filename.md → experiments/2025-01-10-old-filename.md
 ```
 
-### Step 9: Verify Migration
+### Step 8: Verify Migration
 
 Test the new structure by asking Claude Code to:
 
@@ -294,7 +212,7 @@ Example test queries:
 - "How do I fix CUDA OOM errors?"
 - "Why did we choose this architecture?"
 
-### Step 10: Archive Old Notes (Optional)
+### Step 9: Archive Old Notes (Optional)
 
 Once migration is verified:
 
@@ -412,8 +330,7 @@ After migration, use this workflow:
 
 ## Migration Checklist
 
-- [ ] Created directory structure
-- [ ] Created templates
+- [ ] Created directory structure (notes/, configs/, .claude/rules/)
 - [ ] Categorized all existing notes
 - [ ] Added dates to filenames
 - [ ] Moved files to correct directories
@@ -424,6 +341,7 @@ After migration, use this workflow:
 - [ ] Archived original notes
 - [ ] Committed changes to git
 - [ ] Tested with Claude Code session
+- [ ] (Optional) Created custom templates in .claude/templates/
 
 ## Success Criteria
 

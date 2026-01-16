@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "claude-lab-notebook",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "description": "Progressive disclosure note-taking system for research and experiments",
       "author": {
         "name": "Michael Rariden",
