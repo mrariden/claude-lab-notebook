@@ -1,6 +1,6 @@
 ---
 description: Update INDEX.md with recent findings and organize notes
-argument-hint: <required-arg> [optional-arg]
+argument-hint: [action]
 allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
 
@@ -9,6 +9,17 @@ You are helping the user maintain their knowledge base index.
 ## Task
 
 Update notes/INDEX.md to reflect recent work and maintain organization.
+
+## Arguments
+
+If the user provided an action argument (e.g., `/update-index consolidate`), perform that action directly.
+
+Valid actions:
+- `experiment` - Add a recent experiment
+- `decision` - Add a recent decision
+- `troubleshooting` - Add a troubleshooting guide
+- `consolidate` - Review recent notes and extract patterns
+- `cleanup` - Remove old entries, fix broken links
 
 ## Steps
 

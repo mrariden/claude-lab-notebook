@@ -33,10 +33,17 @@ Claude uses this logic to find templates:
 
 Guide the user through creating a note using the appropriate template.
 
+## Arguments
+
+If the user provided a type argument (e.g., `/create-note experiment`), use that type directly instead of asking.
+
+Valid types: `experiment`, `decision`, `troubleshooting`, `research`, or any custom template name.
+
 ## Steps
 
 1. **Determine note type**
-   Ask: "What type of note would you like to create?"
+   - If type was provided as argument: Use it directly
+   - Otherwise ask: "What type of note would you like to create?"
    - experiment: For documenting what you tried
    - decision: For recording why you made a choice
    - troubleshooting: For capturing how you fixed an error
