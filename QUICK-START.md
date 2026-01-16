@@ -14,7 +14,7 @@ This system helps you capture and retrieve experimental knowledge efficiently us
 ```
 
 That's it! The command creates everything you need:
-- `CLAUDE.md` - Protocol instructions
+- `.claude/rules/note-taking-protocol.md` - Protocol instructions
 - `notes/` - Complete directory structure
 - `templates/` - Note templates
 - Starter files (INDEX.md, quick-reference.md)
@@ -26,17 +26,18 @@ That's it! The command creates everything you need:
 <details>
 <summary>Click to expand manual setup steps</summary>
 
-#### 1. Copy files to your project root
+#### 1. Create directory structure
 ```bash
-# Copy these files to your project root:
-# - CLAUDE.md (the protocol)
-# - templates/ directory (note templates)
-```
-
-#### 2. Create directory structure
-```bash
+mkdir -p .claude/rules
 mkdir -p notes/{experiments,decisions,troubleshooting,research}
 mkdir -p configs
+mkdir -p templates
+```
+
+#### 2. Copy files to your project
+```bash
+# Copy templates/ directory content to your templates/ directory
+# Copy the protocol content to .claude/rules/note-taking-protocol.md
 ```
 
 #### 3. Create starter files
@@ -87,7 +88,7 @@ EOF
 </details>
 
 ### Start using it
-In your next Claude Code session, Claude will automatically read CLAUDE.md and follow the protocol.
+In your next Claude Code session, Claude will automatically read `.claude/rules/` and follow the protocol.
 
 ## Your First Session
 

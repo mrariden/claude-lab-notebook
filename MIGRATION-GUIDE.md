@@ -7,7 +7,7 @@ This guide helps you migrate from unstructured notes to the organized note-takin
 ## Pre-Migration Checklist
 
 - [ ] Backup existing notes (git commit or copy to safe location)
-- [ ] Review CLAUDE.md for the new protocol structure
+- [ ] Run `/setup-notes` first to create the directory structure
 - [ ] Identify where your current notes are located
 - [ ] Estimate number of existing note files (for planning)
 

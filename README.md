@@ -100,7 +100,7 @@ cp path/to/claude-lab-notebook/.claude/commands/* .claude/commands/
    ```
    
    This creates:
-   - `CLAUDE.md` - Protocol instructions
+   - `.claude/rules/note-taking-protocol.md` - Protocol instructions
    - `notes/` - Directory structure
    - `templates/` - Note templates
    - Starter files (INDEX.md, quick-reference.md)
@@ -119,7 +119,9 @@ Initializes the complete note-taking system in your current project.
 **What it creates:**
 ```
 your-project/
-├── CLAUDE.md                          # Protocol Claude follows
+├── .claude/
+│   └── rules/
+│       └── note-taking-protocol.md    # Protocol Claude follows (auto-loaded)
 ├── notes/
 │   ├── INDEX.md                       # Master knowledge index
 │   ├── quick-reference.md             # Current working state
@@ -142,7 +144,7 @@ Claude: ✅ Setup complete! Ready to use.
 ```
 
 **Safety:**
-- Backs up existing CLAUDE.md before overwriting
+- Never touches user's CLAUDE.md
 - Asks before overwriting existing directories
 - Safe to run multiple times
 
@@ -238,7 +240,7 @@ Claude: [Updates INDEX.md with findings]
 The system uses a hierarchical approach to minimize context usage:
 
 1. **Session Start:**
-   - Claude reads `CLAUDE.md` (the protocol)
+   - Claude reads `.claude/rules/note-taking-protocol.md` (the protocol)
    - Claude reads `notes/INDEX.md` (~1K tokens)
    - Claude reads `notes/quick-reference.md` (~500 tokens)
    - **Total: ~2K tokens** before doing any work
@@ -281,7 +283,7 @@ Compare to loading all notes at start: **50K+ tokens** before doing anything.
 ```
 [Start Claude Code in project]
 
-Claude: [Reads CLAUDE.md, INDEX.md, quick-reference.md]
+Claude: [Reads .claude/rules/, INDEX.md, quick-reference.md]
 Claude: "I've loaded your project notes. What are you working on?"
 
 You: "I want to test different batch sizes"
@@ -422,10 +424,10 @@ git push origin main
 
 ### Modify the Protocol
 
-Edit `CLAUDE.md` to change behavior:
+Edit `.claude/rules/note-taking-protocol.md` to change behavior:
 
 ```markdown
-# Your CLAUDE.md
+# Your custom additions
 
 ## Custom Instructions
 - Always check tests/ directory before experiments
@@ -474,17 +476,16 @@ Add sections to templates:
 **Setup fails:**
 - Check if you're in the right directory
 - Verify write permissions
-- Look for existing CLAUDE.md conflict
 
 **Notes not being referenced:**
 - Verify INDEX.md exists and has content
-- Check that CLAUDE.md is in project root
+- Check that `.claude/rules/note-taking-protocol.md` exists
 - Ensure proper file naming (lowercase, hyphens, dates)
 
 **Context still too large:**
 - Check that INDEX.md is concise (<200 lines)
 - Verify Claude is asking before loading notes
-- Review CLAUDE.md has progressive disclosure rules
+- Review `.claude/rules/note-taking-protocol.md` has progressive disclosure rules
 
 ## FAQ
 
@@ -498,7 +499,7 @@ A: The note structure works standalone. You'll just create notes manually instea
 A: Add custom templates to `templates/` and modify the `/create-note` command to recognize them.
 
 **Q: How do I share with my team?**
-A: Commit `CLAUDE.md`, `notes/`, and `templates/` to git. Team members clone and install the plugin commands.
+A: Commit `.claude/rules/`, `notes/`, and `templates/` to git. Team members clone and install the plugin commands.
 
 **Q: Can I migrate from Obsidian/Notion?**
 A: Yes. Export to markdown, then run `/migrate-notes` to automatically categorize and organize them into the proper structure.

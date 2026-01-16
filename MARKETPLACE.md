@@ -1,7 +1,7 @@
 # Experiment Notebook - Claude Code Plugin
 
 **Category:** Productivity | Knowledge Management  
-**Version:** 1.0.0  
+**Version:** 2.0.0  
 **License:** MIT
 
 ## Overview
@@ -52,7 +52,7 @@ Progressive disclosure note-taking system designed for research, experiments, an
 **What it does:** Initializes the complete note-taking system in your project
 
 **Creates:**
-- `CLAUDE.md` - Protocol instructions for Claude
+- `.claude/rules/note-taking-protocol.md` - Protocol instructions for Claude
 - `notes/INDEX.md` - Master knowledge index
 - `notes/quick-reference.md` - Current working state  
 - `notes/{experiments,decisions,troubleshooting,research}/` - Organized directories
@@ -63,7 +63,7 @@ Progressive disclosure note-taking system designed for research, experiments, an
 ```
 You: /setup-notes
 Claude: ✅ Complete system installed!
-        Created CLAUDE.md, notes/, templates/
+        Created .claude/rules/note-taking-protocol.md, notes/, templates/
         Ready to use.
 ```
 
@@ -115,7 +115,7 @@ Claude: Found these patterns:
 
 **Session Start (minimal context):**
 ```
-1. Claude reads CLAUDE.md (protocol instructions)
+1. Claude reads .claude/rules/note-taking-protocol.md (protocol instructions)
 2. Claude reads notes/INDEX.md (~1K tokens)
 3. Claude reads notes/quick-reference.md (~500 tokens)
 Total: ~2K tokens before any work
@@ -138,7 +138,9 @@ Total: ~4K tokens for entire session
 
 ```
 your-project/
-├── CLAUDE.md                          # Protocol Claude follows
+├── .claude/
+│   └── rules/
+│       └── note-taking-protocol.md    # Protocol Claude follows (auto-loaded)
 ├── notes/
 │   ├── INDEX.md                       # Master index (read first, always)
 │   ├── quick-reference.md             # Current best config

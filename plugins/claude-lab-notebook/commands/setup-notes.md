@@ -14,16 +14,16 @@ Create the complete directory structure and files for the progressive disclosure
 
 1. **Check current directory**
    - Verify we're in a project root (look for .git or ask user)
-   - Check if CLAUDE.md already exists (warn if it does)
 
 2. **Create directory structure**
    ```bash
+   mkdir -p .claude/rules
    mkdir -p notes/{experiments,decisions,troubleshooting,research}
    mkdir -p configs
    mkdir -p templates
    ```
 
-3. **Create CLAUDE.md**
+3. **Create .claude/rules/note-taking-protocol.md**
    - Full protocol with progressive disclosure rules
    - Context efficiency guidelines
    - Workflow instructions
@@ -53,11 +53,11 @@ Create the complete directory structure and files for the progressive disclosure
 9. **Confirm completion**
    - List all created files
    - Explain next steps
-   - Remind them Claude will auto-read CLAUDE.md on next session
+   - Remind them Claude will auto-read .claude/rules/ on next session
 
-## CLAUDE.md Content
+## .claude/rules/note-taking-protocol.md Content
 
-Use this EXACT content for CLAUDE.md:
+Use this EXACT content for .claude/rules/note-taking-protocol.md:
 
 ```markdown
 # Project Note-Taking Protocol
@@ -244,7 +244,7 @@ Tell the user:
 "✅ Note-taking protocol installed!
 
 📁 Created:
-- CLAUDE.md (protocol instructions)
+- .claude/rules/note-taking-protocol.md (protocol instructions)
 - notes/INDEX.md (your knowledge map)
 - notes/quick-reference.md (current state)
 - notes/{experiments,decisions,troubleshooting,research}/ (organized by type)
@@ -252,7 +252,7 @@ Tell the user:
 
 🚀 Next steps:
 1. Start your next Claude Code session
-2. I'll automatically read CLAUDE.md and follow the protocol
+2. I'll automatically read .claude/rules/ and follow the protocol
 3. At the end of your session, I'll ask if you want to create a note
 
 💡 How it works:
@@ -265,6 +265,5 @@ The system optimizes for findability - you'll never repeat the same mistake twic
 
 ## Error Handling
 
-- If CLAUDE.md exists: Offer to back it up first
 - If directories exist: Ask before overwriting
 - If not in project root: Warn and ask for confirmation
