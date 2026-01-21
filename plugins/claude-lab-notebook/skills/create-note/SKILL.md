@@ -17,11 +17,11 @@ Claude uses this logic to find templates:
 
 2. **Search paths (in order):**
    a. `.claude/templates/{type}-template.md` (user custom)
-   b. `$PLUGIN_ROOT/templates/{type}-template.md` (built-in)
+   b. `$SKILL_DIR/{type}-template.md` (built-in, same directory as this skill)
 
 3. **Use first found:**
    - If found in .claude/templates/, use that (user override)
-   - Else if found in plugin templates/, use that (built-in)
+   - Else if found in skill directory, use that (built-in)
    - Else error: "Template not found"
 
 4. **Special handling:**
@@ -73,18 +73,18 @@ Valid types: `experiment`, `decision`, `troubleshooting`, `research`, or any cus
 ```bash
    # First check user's custom templates
    USER_TEMPLATE=".claude/templates/${type}-template.md"
-   PLUGIN_TEMPLATE="$CLAUDE_PLUGIN_ROOT/templates/${type}-template.md"
-   
+   SKILL_TEMPLATE="$SKILL_DIR/${type}-template.md"
+
    if [ -f "$USER_TEMPLATE" ]; then
        TEMPLATE_PATH="$USER_TEMPLATE"
        TEMPLATE_SOURCE="custom"
-   elif [ -f "$PLUGIN_TEMPLATE" ]; then
-       TEMPLATE_PATH="$PLUGIN_TEMPLATE"
+   elif [ -f "$SKILL_TEMPLATE" ]; then
+       TEMPLATE_PATH="$SKILL_TEMPLATE"
        TEMPLATE_SOURCE="built-in"
    else
        echo "Error: Template '${type}-template.md' not found"
        echo "Available templates:"
-       # List both user and plugin templates
+       # List both user and skill templates
        exit 1
    fi
 ```

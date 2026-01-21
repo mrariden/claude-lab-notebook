@@ -4,7 +4,7 @@ A Claude Code plugin that automates setup and management of a progressive disclo
 
 ## What This Plugin Does
 
-Adds four slash commands to Claude Code:
+Adds four skills to Claude Code:
 
 1. **`/setup-notes`** - Initialize the note-taking system in your project
 2. **`/create-note`** - Create properly formatted experiment/decision/troubleshooting notes
@@ -39,47 +39,25 @@ For more information on Claude Code marketplaces, see the [official documentatio
 <details>
 <summary>Click to expand manual installation options</summary>
 
-#### Copy to a Single Project
+#### Clone and Install as Local Plugin
 
 ```bash
-# In your project root
-mkdir -p .claude/commands
-cd .claude/commands
+# Clone the repository
+git clone https://github.com/mrariden/claude-lab-notebook.git
 
-# Download command files
-curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/setup-notes.md
-curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/create-note.md
-curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/update-index.md
-curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/migrate-notes.md
+# The plugin is ready to use from: claude-lab-notebook/plugins/claude-lab-notebook/
+# Point your Claude Code settings to this location
 ```
 
-#### Install Globally (All Projects)
-
-```bash
-# In your home directory
-mkdir -p ~/.claude/commands
-cd ~/.claude/commands
-
-# Download command files
-curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/setup-notes.md
-curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/create-note.md
-curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/update-index.md
-curl -O https://raw.githubusercontent.com/mrariden/claude-lab-notebook/main/.claude/commands/migrate-notes.md
-```
-
-#### Clone the Repository
+#### Install to Global Plugins Directory
 
 ```bash
 # Clone the plugin
 git clone https://github.com/mrariden/claude-lab-notebook.git
 
-# Install to global commands
-cp claude-lab-notebook/.claude/commands/* ~/.claude/commands/
-
-# Or install to a specific project
-cd your-project
-mkdir -p .claude/commands
-cp path/to/claude-lab-notebook/.claude/commands/* .claude/commands/
+# Copy to global plugins directory
+mkdir -p ~/.claude/plugins
+cp -r claude-lab-notebook/plugins/claude-lab-notebook ~/.claude/plugins/
 ```
 
 </details>
@@ -109,7 +87,7 @@ cp path/to/claude-lab-notebook/.claude/commands/* .claude/commands/
    - Run `/create-note` to document findings
    - Run `/update-index` to maintain organization
 
-## Commands
+## Skills
 
 ### /setup-notes
 
@@ -433,14 +411,13 @@ Edit `.claude/rules/note-taking-protocol.md` to change behavior:
 - Tag notes with project phase (prototype/production)
 ```
 
-### Add Custom Commands
+### Add Custom Skills
 
-Create your own slash commands in `.claude/commands/`:
+Create your own skills as a local plugin in `.claude/plugins/`:
 
 ```bash
-# .claude/commands/weekly-review.md
+# .claude/plugins/my-skills/skills/weekly-review/SKILL.md
 ---
-name: weekly-review
 description: Review and consolidate this week's notes
 ---
 
@@ -466,10 +443,10 @@ Create custom templates in `.claude/templates/`:
 
 ## Troubleshooting
 
-**Command not found:**
-- Verify files are in `.claude/commands/` or `~/.claude/commands/`
+**Skill not found:**
+- Verify the plugin is installed correctly
+- Check that `plugins/claude-lab-notebook/.claude-plugin/plugin.json` exists
 - Restart Claude Code
-- Check file permissions: `chmod +r *.md`
 
 **Setup fails:**
 - Check if you're in the right directory
@@ -508,17 +485,23 @@ A: Yes. Export to markdown, then run `/migrate-notes` to automatically categoriz
 claude-lab-notebook/
 ├── plugins/claude-lab-notebook/
 │   ├── .claude-plugin/
-│   │   └── plugin.json         # Plugin configuration
-│   └── commands/
-│       ├── setup-notes.md      # /setup-notes command
-│       ├── create-note.md      # /create-note command
-│       ├── update-index.md     # /update-index command
-│       └── migrate-notes.md    # /migrate-notes command
-├── templates/                  # Built-in note templates
-├── QUICK-START.md              # Quick start guide
-├── TEMPLATES.md                # Template customization guide
-├── MIGRATION-GUIDE.md          # Detailed migration instructions
-└── README.md                   # This file
+│   │   └── plugin.json              # Plugin configuration
+│   └── skills/
+│       ├── setup-notes/
+│       │   └── SKILL.md             # /setup-notes skill
+│       ├── create-note/
+│       │   ├── SKILL.md             # /create-note skill
+│       │   ├── experiment-template.md
+│       │   ├── decision-template.md
+│       │   └── troubleshooting-template.md
+│       ├── update-index/
+│       │   └── SKILL.md             # /update-index skill
+│       └── migrate-notes/
+│           └── SKILL.md             # /migrate-notes skill
+├── QUICK-START.md                   # Quick start guide
+├── TEMPLATES.md                     # Template customization guide
+├── MIGRATION-GUIDE.md               # Detailed migration instructions
+└── README.md                        # This file
 ```
 
 ## Contributing

@@ -369,12 +369,10 @@ Built-in templates available:
 💡 To customize templates (optional):
 Create .claude/templates/ and add your own:
   mkdir -p .claude/templates
-  # Copy built-in to customize:
-  cp $PLUGIN_ROOT/templates/experiment-template.md .claude/templates/
-  # Or create new ones:
-  vim .claude/templates/my-custom-template.md
-  
-Custom templates override built-in templates with matching names.
+  # Create your own template based on the built-in format:
+  vim .claude/templates/experiment-template.md
+
+Custom templates in .claude/templates/ override built-in templates with matching names.
 
 🚀 Next steps:
 1. Start your next Claude Code session

@@ -16,14 +16,5 @@
     "markdown",
     "progressive-disclosure",
     "lab-notebook"
-  ], 
-  "templates": {
-    "location": "templates/",
-    "built_in": [
-      "experiment-template.md",
-      "decision-template.md",
-      "troubleshooting-template.md"
-    ],
-    "user_override_path": ".claude/templates/"
-  }
+  ]
 }
