@@ -94,30 +94,59 @@ cp -r claude-lab-notebook/plugins/claude-lab-notebook ~/.claude/plugins/
 
 Initializes the complete note-taking system in your current project.
 
-**What it creates:**
+**Flavors:**
+
+The setup command supports flavors to customize the system for different domains:
+
+| Flavor | Primary Directory | Best For |
+|--------|-------------------|----------|
+| `ml` (default) | `experiments/` | Machine learning, data science, research |
+| `software-engineering` | `spikes/` | Web development, APIs, system design |
+
+**Usage:**
+```
+You: /setup-notes                      # Prompts for flavor selection
+You: /setup-notes ml                   # Uses ML flavor directly
+You: /setup-notes software-engineering # Uses SE flavor directly
+```
+
+**What it creates (ML flavor):**
 ```
 your-project/
 ├── .claude/
 │   ├── rules/
 │   │   └── note-taking-protocol.md    # Protocol Claude follows (auto-loaded)
+│   ├── notebook-flavor.txt            # Selected flavor
 │   └── templates/                     # Optional: custom templates (override built-in)
 ├── notes/
 │   ├── INDEX.md                       # Master knowledge index
 │   ├── quick-reference.md             # Current working state
-│   ├── experiments/                   # Chronological experiments
-│   ├── decisions/                     # Design decisions
-│   ├── troubleshooting/              # Error solutions
-│   ├── meetings/                      # Meeting notes
-│   └── research/                      # External references
+│   ├── experiments/                   # Training runs, hyperparameter sweeps
+│   ├── decisions/                     # Architecture choices
+│   ├── troubleshooting/              # CUDA errors, convergence issues
+│   └── research/                      # Papers, techniques
 └── configs/                           # Configuration files
 ```
 
-**Usage:**
+**What it creates (Software Engineering flavor):**
 ```
-You: /setup-notes
-Claude: [Creates complete structure]
-Claude: ✅ Setup complete! Ready to use.
+your-project/
+├── .claude/
+│   └── ...                            # Same as above
+├── notes/
+│   ├── INDEX.md
+│   ├── quick-reference.md
+│   ├── spikes/                        # Time-boxed explorations, POCs
+│   ├── decisions/                     # Architecture decisions
+│   ├── troubleshooting/              # Error patterns, debugging guides
+│   ├── architecture/                  # System design, component diagrams
+│   └── research/                      # Libraries, frameworks
+└── configs/
 ```
+
+**Custom Flavors:**
+
+Create your own flavors by adding a markdown file to the plugin's `flavors/` directory. See `plugins/claude-lab-notebook/skills/setup-notes/flavors/README.md` for the format.
 
 **Safety:**
 - Never touches user's CLAUDE.md
