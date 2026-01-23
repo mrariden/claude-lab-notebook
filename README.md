@@ -102,6 +102,7 @@ The setup command supports flavors to customize the system for different domains
 |--------|-------------------|----------|
 | `ml` (default) | `experiments/` | Machine learning, data science, research |
 | `software-engineering` | `spikes/` | Web development, APIs, system design |
+| `devops-sre` | `incidents/` | Infrastructure, on-call, incident response |
 
 **Usage:**
 ```

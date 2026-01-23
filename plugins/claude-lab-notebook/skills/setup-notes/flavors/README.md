@@ -13,6 +13,7 @@ Flavors customize the note-taking system for different domains. Each flavor defi
 |--------|-------------------|----------|
 | `ml` | `experiments/` | Machine learning, data science, research |
 | `software-engineering` | `spikes/` | Web development, APIs, system design |
+| `devops-sre` | `incidents/` | Infrastructure, on-call, incident response |
 
 ## Creating a Custom Flavor
 

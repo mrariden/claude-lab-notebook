@@ -16,6 +16,7 @@ Flavors customize the system for different domains. Available flavors:
 
 - **ml** (default): Machine learning experiments, hyperparameter tracking, research
 - **software-engineering**: Feature spikes, architecture decisions, API development
+- **devops-sre**: Incident response, runbooks, infrastructure decisions
 
 Flavor files are located in `flavors/` directory relative to this skill.
 
@@ -28,6 +29,7 @@ Flavor files are located in `flavors/` directory relative to this skill.
      Which flavor best matches your project?
      - ml (Machine Learning) - experiments, training runs, hyperparameters
      - software-engineering - spikes, architecture, API development
+     - devops-sre - incidents, runbooks, infrastructure
      ```
 
 2. **Load the flavor file**
