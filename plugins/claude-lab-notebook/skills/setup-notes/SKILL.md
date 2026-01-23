@@ -366,11 +366,11 @@ Built-in templates available:
 - decision-template
 - troubleshooting-template
 
-💡 To customize templates (optional):
-Create .claude/templates/ and add your own:
+💡 To customize or create new note types:
+- Run `/create-note-type` to create a new custom note type
+- Or manually create templates in `.claude/templates/`:
   mkdir -p .claude/templates
-  # Create your own template based on the built-in format:
-  vim .claude/templates/experiment-template.md
+  vim .claude/templates/my-type-template.md
 
 Custom templates in .claude/templates/ override built-in templates with matching names.
 

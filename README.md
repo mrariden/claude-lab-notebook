@@ -4,12 +4,13 @@ A Claude Code plugin that automates setup and management of a progressive disclo
 
 ## What This Plugin Does
 
-Adds four skills to Claude Code:
+Adds five skills to Claude Code:
 
 1. **`/setup-notes`** - Initialize the note-taking system in your project
 2. **`/create-note`** - Create properly formatted experiment/decision/troubleshooting notes
-3. **`/update-index`** - Maintain your knowledge base index
-4. **`/migrate-notes`** - Migrate existing notes into the organized structure
+3. **`/create-note-type`** - Create a new custom note type with its own template
+4. **`/update-index`** - Maintain your knowledge base index
+5. **`/migrate-notes`** - Migrate existing notes into the organized structure
 
 ## Installation
 
@@ -150,6 +151,33 @@ Claude: "Should I update INDEX.md?"
 - **troubleshooting** - For capturing how you fixed errors
 - **meeting** - For recording meeting notes and action items
 - **research** - For external references/papers
+
+### /create-note-type
+
+Creates a new custom note type with its own template.
+
+**Usage:**
+```
+You: /create-note-type standup
+Claude: "What sections should this note type have?"
+You: Yesterday, Today, Blockers
+Claude: [Creates .claude/templates/standup-template.md]
+Claude: [Creates notes/standups/ directory]
+Claude: "Should I add a section for standups to INDEX.md?"
+```
+
+**What it does:**
+1. Creates a template file in `.claude/templates/`
+2. Creates a corresponding directory in `notes/`
+3. Optionally updates INDEX.md with a new section
+4. The new type is immediately available via `/create-note`
+
+**Example custom types:**
+- `standup` - Daily standup notes
+- `retrospective` - Sprint retrospectives
+- `bug-report` - Bug tracking
+- `feature-spec` - Feature specifications
+- `interview` - Interview notes
 
 ### /update-index
 
@@ -497,6 +525,8 @@ claude-lab-notebook/
 │       │   ├── decision-template.md
 │       │   ├── troubleshooting-template.md
 │       │   └── meeting-template.md
+│       ├── create-note-type/
+│       │   └── SKILL.md             # /create-note-type skill
 │       ├── update-index/
 │       │   └── SKILL.md             # /update-index skill
 │       └── migrate-notes/
