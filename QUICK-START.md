@@ -121,7 +121,7 @@ Claude: "Should I read experiments/2025-01-10-lr-sweep.md for context?"
 **Evening:**
 ```
 You: /create-note
-Claude: "What type? (experiment/decision/troubleshooting)"
+Claude: "What type? (experiment/decision/troubleshooting/meeting)"
 You: experiment
 Claude: [Creates notes/experiments/2025-01-15-lr-test.md]
 Claude: "Should I update INDEX.md?"
@@ -160,6 +160,12 @@ Claude: [Updates INDEX.md with new finding]
 **Size:** ~50-200 lines
 **Content:** Symptom, cause, solution, prevention
 **Create:** When you solve a tricky bug
+
+### meetings/YYYY-MM-DD-topic.md
+**Purpose:** Record meeting discussions and action items
+**Size:** ~100-300 lines
+**Content:** Agenda, discussion, decisions, action items, follow-ups
+**Create:** After each meeting
 
 ## Key Concepts
 

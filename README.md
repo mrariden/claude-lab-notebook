@@ -106,6 +106,7 @@ your-project/
 │   ├── experiments/                   # Chronological experiments
 │   ├── decisions/                     # Design decisions
 │   ├── troubleshooting/              # Error solutions
+│   ├── meetings/                      # Meeting notes
 │   └── research/                      # External references
 └── configs/                           # Configuration files
 ```
@@ -129,7 +130,7 @@ Creates a new note using the appropriate template.
 **Usage:**
 ```
 You: /create-note
-Claude: "What type of note? (experiment/decision/troubleshooting/research)"
+Claude: "What type of note? (experiment/decision/troubleshooting/meeting/research)"
 You: experiment
 Claude: "What's the brief description?"
 You: learning rate sweep
@@ -147,6 +148,7 @@ Claude: "Should I update INDEX.md?"
 - **experiment** - For documenting what you tried
 - **decision** - For recording why you chose something
 - **troubleshooting** - For capturing how you fixed errors
+- **meeting** - For recording meeting notes and action items
 - **research** - For external references/papers
 
 ### /update-index
@@ -493,7 +495,8 @@ claude-lab-notebook/
 │       │   ├── SKILL.md             # /create-note skill
 │       │   ├── experiment-template.md
 │       │   ├── decision-template.md
-│       │   └── troubleshooting-template.md
+│       │   ├── troubleshooting-template.md
+│       │   └── meeting-template.md
 │       ├── update-index/
 │       │   └── SKILL.md             # /update-index skill
 │       └── migrate-notes/

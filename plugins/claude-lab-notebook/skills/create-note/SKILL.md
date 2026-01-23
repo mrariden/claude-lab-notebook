@@ -1,5 +1,5 @@
 ---
-description: Create a new experiment, decision, or troubleshooting note using templates
+description: Create a new experiment, decision, troubleshooting, or meeting note using templates
 argument-hint: [type]
 allowed-tools: [Read, Write, Glob, Grep, Bash]
 ---
@@ -37,7 +37,7 @@ Guide the user through creating a note using the appropriate template.
 
 If the user provided a type argument (e.g., `/create-note experiment`), use that type directly instead of asking.
 
-Valid types: `experiment`, `decision`, `troubleshooting`, `research`, or any custom template name.
+Valid types: `experiment`, `decision`, `troubleshooting`, `meeting`, `research`, or any custom template name.
 
 ## Steps
 
@@ -47,6 +47,7 @@ Valid types: `experiment`, `decision`, `troubleshooting`, `research`, or any cus
    - experiment: For documenting what you tried
    - decision: For recording why you made a choice
    - troubleshooting: For capturing how you fixed an error
+   - meeting: For recording meeting notes and action items
    - research: For external references
 
 2. **Get note details**
@@ -63,6 +64,10 @@ Valid types: `experiment`, `decision`, `troubleshooting`, `research`, or any cus
    - Ask for error/issue name
    - Suggest filename: `notes/troubleshooting/{issue}-errors.md`
    
+   **For meeting:**
+   - Ask for meeting topic/name
+   - Suggest filename: `notes/meetings/YYYY-MM-DD-{topic}.md`
+
    **For research:**
    - Ask for topic
    - Suggest filename: `notes/research/{topic}.md`
@@ -127,6 +132,7 @@ Valid types: `experiment`, `decision`, `troubleshooting`, `research`, or any cus
    - experiment → "## All Experiments"
    - decision → "## All Decisions"
    - troubleshooting → "## All Troubleshooting Guides"
+   - meeting → "## All Meetings"
    - research → "## All Research"
 
    Also add to "## Recent Activity" with today's date and title.
@@ -182,6 +188,22 @@ Last updated: YYYY-MM-DD
 ## Prevention
 ## Related Issues
 ## Example Occurrences
+```
+
+### Meeting Template Structure
+```markdown
+# Meeting: Title
+
+Date: YYYY-MM-DD
+Attendees: [Names]
+
+## Agenda
+## Discussion
+## Decisions Made (table)
+## Action Items
+## Key Takeaways
+## Follow-up
+## References
 ```
 
 ## Smart Pre-filling
