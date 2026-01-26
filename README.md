@@ -394,18 +394,21 @@ batch_size=64 requires ~16GB VRAM, RTX 3090 has 15.78GB
 
 ### Custom Templates
 
-The plugin provides built-in templates that work out of the box. To customize:
+When you run `/setup-notes`, all built-in templates are automatically copied to `.claude/templates/` in your project:
+
+- `experiment-template.md`
+- `decision-template.md`
+- `troubleshooting-template.md`
+- `meeting-template.md`
+
+To customize a template:
 
 ```bash
-# Create custom templates directory
-mkdir -p .claude/templates
-
-# Copy a built-in template to customize
-# Or create your own from scratch
+# Templates are already in your project after /setup-notes
 vim .claude/templates/experiment-template.md
 ```
 
-Custom templates in `.claude/templates/` override built-in templates with matching names.
+Create additional custom templates with `/create-note-type`, or manually add files to `.claude/templates/`.
 
 See [TEMPLATES.md](TEMPLATES.md) for detailed customization options.
 
@@ -551,9 +554,9 @@ claude-lab-notebook/
 │       │   └── SKILL.md             # /setup-notes skill
 │       ├── create-note/
 │       │   ├── SKILL.md             # /create-note skill
-│       │   ├── experiment-template.md
-│       │   ├── decision-template.md
-│       │   ├── troubleshooting-template.md
+│       │   ├── experiment-template.md    # Built-in templates
+│       │   ├── decision-template.md      # (copied to .claude/templates/
+│       │   ├── troubleshooting-template.md  # during /setup-notes)
 │       │   └── meeting-template.md
 │       ├── create-note-type/
 │       │   └── SKILL.md             # /create-note-type skill

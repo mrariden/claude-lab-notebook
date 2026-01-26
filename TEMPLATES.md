@@ -4,11 +4,12 @@
 
 ### Using Built-in Templates
 
-No setup needed! The plugin provides three built-in templates:
+After running `/setup-notes`, you'll have four built-in templates ready to use:
 
 - **experiment** - Document what you tried and learned
 - **decision** - Record why you chose a particular approach
 - **troubleshooting** - Capture error solutions for future reference
+- **meeting** - Record meeting discussions and action items
 
 Just run:
 ```
@@ -19,19 +20,21 @@ Choose your template type and Claude creates a properly formatted note.
 
 ### Creating Custom Templates
 
-To customize templates or create new types:
+To customize existing templates or create new types:
 
-1. Create the custom templates directory:
+1. Templates are already in `.claude/templates/` after running `/setup-notes`
+
+2. Edit an existing template:
    ```bash
-   mkdir -p .claude/templates
+   vim .claude/templates/experiment-template.md
    ```
 
-2. Add your template file:
+3. Or create a new template:
    ```bash
    vim .claude/templates/my-type-template.md
    ```
 
-3. Use it:
+4. Use it:
    ```
    /create-note
    > Type: my-type
@@ -39,15 +42,16 @@ To customize templates or create new types:
 
 ## How Template Resolution Works
 
-When you run `/create-note`, Claude looks for templates in this order:
+When you run `/create-note`, Claude looks for templates in:
 
-1. **User custom**: `.claude/templates/{type}-template.md`
-2. **Built-in**: Plugin's `templates/{type}-template.md`
+- **`.claude/templates/{type}-template.md`**
 
-The first match wins. This means:
-- Custom templates override built-in templates with the same name
-- You can create entirely new template types
-- Built-in templates always work as fallback
+That's it! All templates (both built-in and custom) live in `.claude/templates/`.
+
+During `/setup-notes`, the built-in templates are automatically copied to your project:
+- You can customize them directly
+- Changes won't be overwritten by plugin updates
+- New templates you create work the same way
 
 ## Template File Structure
 
@@ -64,28 +68,29 @@ Templates must follow the pattern: `{type}-template.md`
 | ablation | ablation-template.md |
 | sprint | sprint-template.md |
 
-## Overriding Built-in Templates
+## Customizing Built-in Templates
 
-### Method 1: Copy and Modify
+Built-in templates are already in `.claude/templates/` after `/setup-notes`. Just edit them directly:
+
+### Method 1: Edit Existing Templates
 
 ```bash
-# Create custom templates directory
-mkdir -p .claude/templates
-
-# Copy a built-in template (adjust path to your plugin installation)
-cp ~/.claude/plugins/claude-lab-notebook/templates/experiment-template.md \
-   .claude/templates/
-
-# Customize it
+# Templates are already copied to your project
 vim .claude/templates/experiment-template.md
 ```
 
-### Method 2: Create From Scratch
+### Method 2: Create New Templates
+
+Use `/create-note-type` for guided creation:
+
+```
+/create-note-type my-type
+```
+
+Or create manually:
 
 ```bash
-mkdir -p .claude/templates
-
-cat > .claude/templates/experiment-template.md << 'EOF'
+cat > .claude/templates/my-type-template.md << 'EOF'
 # YYYY-MM-DD: [Title]
 
 ## Objective
@@ -245,29 +250,30 @@ ln -s experiment-templates .claude/templates
 **Template not found:**
 - Check filename ends with `-template.md`
 - Verify it's in `.claude/templates/` (not `templates/`)
-- Run `/create-note` and check available types
+- Run `/setup-notes` if `.claude/templates/` doesn't exist
+- List available templates: `ls .claude/templates/`
 
-**Built-in template not working:**
-- Plugin may need reinstalling
-- Check plugin status with `/plugin list`
+**Templates directory missing:**
+- Run `/setup-notes` to initialize the system and copy built-in templates
 
 **Custom template ignored:**
 - Filename must exactly match: `{type}-template.md`
 - Directory must be `.claude/templates/` in project root
+- Check file permissions: `ls -la .claude/templates/`
 
 ## FAQ
 
 **Q: Do I need to create .claude/templates/?**
-A: No! Only create it if you want custom templates. Built-in templates work without any setup.
+A: No! `/setup-notes` creates it and copies built-in templates automatically.
 
-**Q: Can I have both custom and built-in templates?**
-A: Yes! You can override some templates while using built-in for others.
+**Q: Can I customize the built-in templates?**
+A: Yes! After `/setup-notes`, edit the files in `.claude/templates/` directly.
 
-**Q: Will my custom templates update when the plugin updates?**
-A: No - your customizations persist. That's the point of having them separate.
+**Q: Will my customizations be overwritten when the plugin updates?**
+A: No - templates in `.claude/templates/` are yours to keep. Plugin updates won't touch them.
 
 **Q: Can I create templates for new note types?**
-A: Yes! Any `{name}-template.md` file becomes a usable template type.
+A: Yes! Use `/create-note-type` or manually add `{name}-template.md` files to `.claude/templates/`.
 
-**Q: What if I want to see what built-in templates look like?**
-A: Check the plugin's `templates/` directory or ask Claude to show you a template.
+**Q: What if I want to reset to default templates?**
+A: Delete the templates you want to reset from `.claude/templates/`, then re-run `/setup-notes` to copy fresh versions.

@@ -44,37 +44,57 @@ Flavor files are located in `flavors/` directory relative to this skill.
 
 4. **Create directory structure**
    - Create `.claude/rules` directory
+   - Create `.claude/templates` directory
    - Create `configs` directory
    - Create `notes/` with subdirectories from flavor's directory list
    - Example for ml: `notes/{experiments,decisions,troubleshooting,research}`
    - Example for software-engineering: `notes/{spikes,decisions,troubleshooting,architecture,research}`
 
-5. **Save flavor choice**
+5. **Copy built-in templates to .claude/templates/**
+
+   Copy these template files from the plugin's `create-note/` skill directory to `.claude/templates/`:
+   - `experiment-template.md`
+   - `decision-template.md`
+   - `troubleshooting-template.md`
+   - `meeting-template.md`
+
+   **How to find the plugin templates:**
+   - The templates are co-located with the `/create-note` skill
+   - Use Glob to find them: Search for `**/skills/create-note/*-template.md`
+   - Read each template file from the plugin directory
+   - Write it to `.claude/templates/` with the same filename
+
+   This makes templates:
+   - Always available in a known location
+   - Easy for users to customize
+   - Portable with the project
+
+6. **Save flavor choice**
    - Write the selected flavor name to `.claude/notebook-flavor.txt`
    - This allows other skills to know which flavor is in use
 
-6. **Create .claude/rules/note-taking-protocol.md**
+7. **Create .claude/rules/note-taking-protocol.md**
    - Use the protocol template below
    - Replace `{{DIRECTORY_STRUCTURE}}` with flavor's directory tree
    - Replace `{{PROTOCOL_EXAMPLES}}` with flavor's "When to Load Additional Files" examples
    - Replace `{{SESSION_EXAMPLE}}` with flavor's progressive disclosure session example
    - Replace `{{PRIMARY_DIR}}` with flavor's primary directory (experiments/spikes)
 
-7. **Create notes/INDEX.md**
+8. **Create notes/INDEX.md**
    - Use the INDEX.md template below
    - Include section headers from flavor's INDEX.md examples
 
-8. **Create notes/quick-reference.md**
+9. **Create notes/quick-reference.md**
    - Use the quick-reference.md template below
 
-9. **Create notes/README.md**
-   - Quick guide to the system
-   - How to use the directories
+10. **Create notes/README.md**
+    - Quick guide to the system
+    - How to use the directories
 
-10. **Optional: Add to .gitignore**
+11. **Optional: Add to .gitignore**
     - Ask user if they want notes/local/ in .gitignore for personal notes
 
-11. **Confirm completion**
+12. **Confirm completion**
     - List all created files
     - Explain next steps
     - Remind them Claude will auto-read .claude/rules/ on next session
@@ -255,16 +275,22 @@ Tell the user:
 **Created:**
 - `.claude/rules/note-taking-protocol.md` (auto-loaded protocol)
 - `.claude/notebook-flavor.txt` (flavor configuration)
+- `.claude/templates/` (note templates - customize as needed)
+  - experiment-template.md
+  - decision-template.md
+  - troubleshooting-template.md
+  - meeting-template.md
 - `notes/INDEX.md` (your knowledge map)
 - `notes/quick-reference.md` (current state)
 - `notes/{directories from flavor}/` (organized by type)
 - `configs/` (configuration file storage)
 
 **Templates:**
-Built-in templates available via `/create-note`:
-- experiment/spike (depends on flavor)
+Built-in templates copied to `.claude/templates/` and ready to use via `/create-note`:
+- experiment (or spike for software-engineering flavor)
 - decision
 - troubleshooting
+- meeting
 
 **Next steps:**
 1. Start your next Claude Code session
