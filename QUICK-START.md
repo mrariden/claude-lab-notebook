@@ -15,8 +15,8 @@ This system helps you capture and retrieve experimental knowledge efficiently us
 
 That's it! The command creates everything you need:
 - `.claude/rules/note-taking-protocol.md` - Protocol instructions
+- `.claude/templates/` - Note templates (ready to customize)
 - `notes/` - Complete directory structure
-- `templates/` - Note templates
 - Starter files (INDEX.md, quick-reference.md)
 
 **Have existing notes?** Run `/migrate-notes` after setup to organize them.
@@ -29,14 +29,14 @@ That's it! The command creates everything you need:
 #### 1. Create directory structure
 ```bash
 mkdir -p .claude/rules
+mkdir -p .claude/templates
 mkdir -p notes/{experiments,decisions,troubleshooting,research}
 mkdir -p configs
-mkdir -p templates
 ```
 
 #### 2. Copy files to your project
 ```bash
-# Copy templates/ directory content to your templates/ directory
+# Copy built-in templates to .claude/templates/
 # Copy the protocol content to .claude/rules/note-taking-protocol.md
 ```
 

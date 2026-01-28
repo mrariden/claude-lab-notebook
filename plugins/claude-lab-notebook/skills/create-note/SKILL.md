@@ -8,26 +8,22 @@ You are helping the user create a properly formatted note.
 
 ## Template Resolution
 
-Claude uses this logic to find templates:
+All templates are stored in `.claude/templates/` in the user's project.
 
 1. **Determine template name:**
-   - User says "experiment" or type == 'experiment'→ look for "experiment-template.md"
-   - User says "decision" or type == 'decision'→ look for "decision-template.md"
+   - User says "experiment" or type == 'experiment' → look for "experiment-template.md"
+   - User says "decision" or type == 'decision' → look for "decision-template.md"
    - User says "custom-type" → look for "custom-type-template.md"
 
-2. **Search paths (in order):**
-   a. `.claude/templates/{type}-template.md` (user custom)
-   b. `$SKILL_DIR/{type}-template.md` (built-in, same directory as this skill)
+2. **Load template:**
+   - Read from `.claude/templates/{type}-template.md`
+   - If not found, show error: "Template '{type}-template.md' not found in .claude/templates/"
+   - List available templates by reading all files matching `.claude/templates/*-template.md`
 
-3. **Use first found:**
-   - If found in .claude/templates/, use that (user override)
-   - Else if found in skill directory, use that (built-in)
-   - Else error: "Template not found"
-
-4. **Special handling:**
-   - User can create ANY template name
-   - Built-in templates always available as fallback
-   - User templates with same name override built-in
+3. **Built-in templates:**
+   - `/setup-notes` copies built-in templates to `.claude/templates/` during initialization
+   - Users can customize these templates directly
+   - Users can create new templates with `/create-note-type`
 
 ## Task
 
@@ -74,34 +70,15 @@ Valid types: `experiment`, `decision`, `troubleshooting`, `meeting`, `research`,
 
 3. **Load appropriate template**
 
-   **Template resolution logic:**
-```bash
-   # First check user's custom templates
-   USER_TEMPLATE=".claude/templates/${type}-template.md"
-   SKILL_TEMPLATE="$SKILL_DIR/${type}-template.md"
+   **Read the template:**
+   - Use Read tool to load `.claude/templates/{type}-template.md`
+   - If file doesn't exist, list available templates with Glob: `.claude/templates/*-template.md`
+   - Show error: "Template not found. Run `/setup-notes` to initialize templates or `/create-note-type {type}` to create a custom template."
 
-   if [ -f "$USER_TEMPLATE" ]; then
-       TEMPLATE_PATH="$USER_TEMPLATE"
-       TEMPLATE_SOURCE="custom"
-   elif [ -f "$SKILL_TEMPLATE" ]; then
-       TEMPLATE_PATH="$SKILL_TEMPLATE"
-       TEMPLATE_SOURCE="built-in"
-   else
-       echo "Error: Template '${type}-template.md' not found"
-       echo "Available templates:"
-       # List both user and skill templates
-       exit 1
-   fi
-```
-   
-   **Read template:**
-   - Use `view` tool to read from $TEMPLATE_PATH
-   - Fill in today's date automatically
+   **Pre-fill template:**
+   - Fill in today's date automatically (YYYY-MM-DD format)
    - Pre-fill what you can from conversation context
-   
-   **Inform user (optional):**
-   If using custom template, mention it:
-   "Using custom template from .claude/templates/"
+   - Keep placeholder text for sections you don't have info for
 
 4. **Create the note**
    - Use `create_file` to write the note
@@ -300,6 +277,7 @@ Next steps:
 
 ## Error Handling
 
-- If templates directory doesn't exist: "Run /setup-notes first to initialize the system"
-- If file already exists: Ask if they want to overwrite or create with different name
+- If `.claude/templates/` directory doesn't exist: "Run `/setup-notes` first to initialize the system"
+- If template file doesn't exist: "Template not found. Available templates: [list from .claude/templates/]. Use `/create-note-type {type}` to create a custom template."
+- If note file already exists: Ask if they want to overwrite or create with different name
 - If INDEX.md doesn't exist: Warn but create note anyway

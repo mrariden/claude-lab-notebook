@@ -1,7 +1,7 @@
 # Experiment Notebook - Claude Code Plugin
 
-**Category:** Productivity | Knowledge Management  
-**Version:** 2.3.2  
+**Category:** Productivity | Knowledge Management
+**Version:** 2.3.2
 **License:** MIT
 
 ## Overview
