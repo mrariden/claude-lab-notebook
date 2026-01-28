@@ -215,6 +215,59 @@ Based on the conversation history:
 - Extract successful config (→ Configuration Used)
 - Note any related past experiments
 
+## Figure Embedding
+
+**IMPORTANT**: When adding figures to notes, always use inline markdown image syntax to
+ make them viewable:
+
+✅ **Correct** - Embeds image inline:
+```markdown
+![Figure description](figures/filename.png)
+
+❌ Incorrect - Just a text link:
+[Figure description](figures/filename.png)
+
+Guidelines:
+- Use ![alt text](path) syntax so images render directly in markdown viewers
+- Alt text should briefly describe what the figure shows
+- Relative paths from the note location (e.g., figures/ subdirectory)
+- After the embedded image, add a bullet list with key observations from the figure
+
+Example:
+## Figures
+
+**Performance Comparison**
+![Chart showing performance metrics over time](figures/performance-comparison.png)
+- Metrics improved after configuration change
+- Need further investigation on edge cases
+
+## References and Backlinks
+
+**IMPORTANT**: All references to other notes, files, or documentation should be
+clickable backlinks:
+
+✅ **Correct** - Clickable backlink:
+```markdown
+- Related experiment: [2026-01-22-linear-decoder.md](../experiments/2026-01-22-linear-decoder.md)
+
+❌ Incorrect - Plain text or code blocks:
+- Related experiment: experiments/2026-01-22-linear-decoder.md
+- Dataset implementation: `path/to/example/dataset.py`
+
+Guidelines:
+- Use [display text](relative/path) syntax for all file and note references
+- Use relative paths from the current note location
+- Link display text should be descriptive (filename or human-readable description)
+- Code files, config files, notebooks, and other notes should all be backlinks
+- This makes notes navigable and allows clicking through to related content
+
+Example References Section:
+## References
+- Related experiment: [2026-01-15-initial-approach.md](../experiments/2026-01-15-initial-approach.md)
+- Implementation: [data_processor.py](../../src/data_processor.py)
+- Configuration: [config.yaml](../../config/config.yaml)
+- Documentation: [API Design](../research/api-design.md)
+
 ## Filename Formatting
 
 Always use:
