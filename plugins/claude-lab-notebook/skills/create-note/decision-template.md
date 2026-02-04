@@ -61,7 +61,9 @@ Conditions that would trigger reconsidering this decision:
 - After time period (e.g., "revisit in 3 months")
 
 ## References
-- Related experiments: experiments/YYYY-MM-DD-file.md
-- Related troubleshooting: troubleshooting/topic.md
-- Related decisions: decisions/YYYY-MM-other-topic.md
-- External sources: research/paper-name.md
+- Related experiments: [Experiment title](../experiments/YYYY-MM-DD-file.md)
+- Related troubleshooting: [Troubleshooting title](../troubleshooting/topic.md)
+- Related decisions: [Decision title](YYYY-MM-other-topic.md)
+- External sources: [Research title](../research/paper-name.md)
+- Code/configs: [File description](../../path/to/file.yaml)
+- External links: [Link text](URL)

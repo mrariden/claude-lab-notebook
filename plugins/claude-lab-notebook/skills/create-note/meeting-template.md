@@ -3,6 +3,8 @@
 Date: YYYY-MM-DD
 Attendees: [Names]
 
+> **Note:** This meeting note is a snapshot in time. Each meeting should have its own note. Do not edit previous meeting notes unless absolutely necessary (e.g., fixing a factual error). Meeting notes should stand on their own chronologically.
+
 ## Agenda
 1. Topic 1
 2. Topic 2
@@ -40,6 +42,7 @@ Attendees: [Names]
 - Topics to revisit
 
 ## References
-- Related decisions: decisions/YYYY-MM-topic.md
-- Related experiments: experiments/YYYY-MM-DD-file.md
+- Related decisions: [Decision title](../decisions/YYYY-MM-topic.md)
+- Related experiments: [Experiment title](../experiments/YYYY-MM-DD-file.md)
+- Previous meeting: [Previous meeting title](YYYY-MM-DD-previous-topic.md)
 - External links: [Link text](URL)

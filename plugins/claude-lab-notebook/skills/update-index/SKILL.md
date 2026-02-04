@@ -39,17 +39,17 @@ Valid actions:
    - Add one-line summary to "Recent Activity"
    - Add to "All Experiments" chronologically
    - If significant: Add to "What Works" or "Known Issues"
-   - Include link to actual note file
+   - **CRITICAL:** Include clickable link to actual note file using `[Note title](relative/path.md)` syntax
 
 4. **For new decision:**
    - Add to "All Decisions" list
-   - Add one-line summary with link
+   - Add one-line summary with clickable link: `[Decision title](decisions/filename.md)`
    - If it affects current practice: Note in "What Works"
 
 5. **For troubleshooting:**
    - Add to "Known Issues" if ongoing problem
    - Add to "All Troubleshooting Guides" list
-   - Include symptom + link
+   - Include symptom + clickable link: `[Error title](troubleshooting/filename.md)`
 
 6. **For consolidation:**
    - Scan experiments/ for recent notes
@@ -67,6 +67,8 @@ Valid actions:
 
 ## INDEX.md Structure
 
+**IMPORTANT:** All file references in INDEX.md MUST be clickable markdown links using `[Display text](relative/path.md)` syntax.
+
 ```markdown
 # Project Notes Index
 
@@ -77,22 +79,25 @@ Last updated: YYYY-MM-DD
 - [Quick Reference](quick-reference.md)
 
 ## What Works (Summary)
-- **Topic**: One-line summary (see experiments/YYYY-MM-DD-file.md)
+- **Topic**: One-line summary (see [Experiment title](experiments/YYYY-MM-DD-file.md))
 
 ## Known Issues
-- **Issue**: One-line description (see troubleshooting/file.md)
+- **Issue**: One-line description (see [Troubleshooting title](troubleshooting/file.md))
 
 ## Recent Activity (Last 7 days)
-- YYYY-MM-DD: What happened (link)
+- YYYY-MM-DD: [What happened](experiments/YYYY-MM-DD-file.md) - Brief summary
 
 ## All Experiments
-- YYYY-MM-DD: Title - Brief result (path)
+- YYYY-MM-DD: [Experiment title](experiments/YYYY-MM-DD-file.md) - Brief result
 
 ## All Decisions
-- [Topic](decisions/file.md) - One-line summary
+- [Decision title](decisions/file.md) - One-line summary
 
 ## All Troubleshooting Guides
 - [Error Name](troubleshooting/file.md) - Symptom
+
+## All Meetings
+- [Meeting title](meetings/YYYY-MM-DD-topic.md) - Key takeaways
 ```
 
 ## Smart Consolidation
@@ -117,16 +122,16 @@ When user asks to "consolidate" or "review":
    - Are there contradictions to resolve?
 
 4. **Propose updates**
-   Show user proposed additions:
+   Show user proposed additions with clickable links:
    "I found these patterns from your recent work:
-   
+
    ✅ What Works:
-   - Learning rate 0.0003 consistently good (3 experiments)
-   - 4-layer architecture optimal for this task
-   
+   - Learning rate 0.0003 consistently good ([exp1](experiments/2025-01-10-lr.md), [exp2](experiments/2025-01-12-lr.md), [exp3](experiments/2025-01-13-lr.md))
+   - 4-layer architecture optimal for this task ([architecture comparison](experiments/2025-01-11-arch.md))
+
    ❌ Known Issues:
-   - Batch size >64 causes OOM on RTX 3090
-   
+   - Batch size >64 causes OOM on RTX 3090 ([troubleshooting guide](troubleshooting/oom-errors.md))
+
    Should I add these to INDEX.md?"
 
 ## One-Line Summary Guidelines
@@ -143,14 +148,16 @@ Bad summaries:
 
 ## Recent Activity Format
 
-Keep last 7-14 days visible:
+Keep last 7-14 days visible with clickable links:
 
 ```markdown
 ## Recent Activity (Last 7 days)
-- 2025-01-13: Learning rate sweep - 0.0003 optimal (experiments/2025-01-13-lr-sweep.md)
-- 2025-01-12: Architecture comparison - 4 layers best (experiments/2025-01-12-arch.md)
-- 2025-01-11: Optimizer test - AdamW > SGD (experiments/2025-01-11-optimizer.md)
+- 2025-01-13: [Learning rate sweep](experiments/2025-01-13-lr-sweep.md) - 0.0003 optimal
+- 2025-01-12: [Architecture comparison](experiments/2025-01-12-arch.md) - 4 layers best
+- 2025-01-11: [Optimizer test](experiments/2025-01-11-optimizer.md) - AdamW > SGD
 ```
+
+**Format:** `YYYY-MM-DD: [Note title](relative/path.md) - Brief result`
 
 Auto-archive older entries to keep this section focused.
 

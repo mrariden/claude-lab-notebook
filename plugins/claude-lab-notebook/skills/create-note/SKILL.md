@@ -63,6 +63,9 @@ Valid types: `experiment`, `decision`, `troubleshooting`, `meeting`, `research`,
    **For meeting:**
    - Ask for meeting topic/name
    - Suggest filename: `notes/meetings/YYYY-MM-DD-{topic}.md`
+   - **IMPORTANT:** Meeting notes are snapshots in time - each meeting gets its own note
+   - Do not edit previous meeting notes unless absolutely necessary
+   - Link to previous meetings in the References section
 
    **For research:**
    - Ask for topic
@@ -191,6 +194,8 @@ Based on the conversation history:
 - Extract any errors mentioned (→ Failed Approaches)
 - Extract successful config (→ Configuration Used)
 - Note any related past experiments
+- **CRITICAL:** When referencing related notes or files, always use clickable markdown links: `[Display text](relative/path)`
+- Search INDEX.md to find related notes and add them as clickable links in References section
 
 ## Figure Embedding
 
@@ -271,9 +276,11 @@ Confirm to user:
 
 Next steps:
 - [ ] Fill in remaining details in the note
-- [ ] Link related notes in References section
+- [ ] Add clickable links to related notes in References section
+- [ ] Link back from related notes if needed (bi-directional linking)
 
-💡 This note is now searchable via INDEX.md. I'll reference it in future sessions when relevant."
+💡 This note is now searchable via INDEX.md. I'll reference it in future sessions when relevant.
+💡 Remember: All file and note references should be clickable markdown links."
 
 ## Error Handling
 

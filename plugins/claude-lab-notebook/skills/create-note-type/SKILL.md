@@ -57,11 +57,13 @@ If the user provided a type name (e.g., `/create-note-type standup`), use that n
    - Yesterday's Progress
    - Today's Plan
    - Blockers
+   - **Note:** Each standup is a snapshot in time - don't edit previous standups
 
    For `retrospective` or `retro`:
    - What Went Well
    - What Could Be Improved
    - Action Items
+   - **Note:** Each retrospective is a snapshot in time - don't edit previous retros
 
    For `bug-report` or `bug`:
    - Summary
@@ -116,7 +118,8 @@ If the user provided a type name (e.g., `/create-note-type standup`), use that n
    - Title format: `# {Type}: {Title}` or `# YYYY-MM-DD: {Title}`
    - Date field if applicable
    - Each section as `## Section Name` with placeholder content
-   - References section at the end
+   - **CRITICAL:** Always include `## References` section at the end with clickable link examples
+   - Use `[Display text](relative/path.md)` format for all file/note references
 
    Write to: `.claude/templates/{type}-template.md`
 
@@ -144,7 +147,7 @@ If the user provided a type name (e.g., `/create-note-type standup`), use that n
 
 ## Template Format
 
-Use this structure for the generated template:
+Use this structure for the generated template with clickable links in References:
 
 ```markdown
 # {Type}: Descriptive Title
@@ -161,7 +164,10 @@ Placeholder text explaining what goes here
 Placeholder text explaining what goes here
 
 ## References
-- Related notes: path/to/note.md
+- Related notes: [Note title](relative/path/to/note.md)
+- Related experiments: [Experiment title](../experiments/YYYY-MM-DD-file.md)
+- Related decisions: [Decision title](../decisions/topic.md)
+- Code/config files: [File description](../../path/to/file.py)
 - External links: [Link text](URL)
 ```
 
@@ -182,6 +188,10 @@ Placeholder text explaining what goes here
 
 ## Notes
 - Additional context
+
+## References
+- Related experiments: [Experiment title](../experiments/YYYY-MM-DD-file.md)
+- Related tasks: [Task description](../path/to/file.md)
 ```
 
 ### Bug Report Template
@@ -222,8 +232,10 @@ What actually happens
 How it was fixed (fill in when resolved)
 
 ## References
-- Related issues
-- Related code
+- Related issues: [Issue title](other-bug.md)
+- Related code: [File description](../../src/file.py)
+- Related troubleshooting: [Troubleshooting title](../../troubleshooting/error.md)
+- External links: [Link text](URL)
 ```
 
 ## After Creation
