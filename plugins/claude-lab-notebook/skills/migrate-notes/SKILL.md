@@ -48,6 +48,7 @@ For each existing note file:
    - Architectural/design choices → `decisions/`
    - Error solutions/fixes → `troubleshooting/`
    - External references/papers → `research/`
+   - Meeting notes → `meetings/`
    - Current working state → `quick-reference.md`
    - Mixed content → Split into multiple files
 
@@ -57,6 +58,11 @@ For each existing note file:
    - Use today's date if truly unknown (note this in the file)
 
 4. **Propose new filename**: `YYYY-MM-DD-descriptive-name.md`
+
+5. **Identify cross-references**:
+   - Note any references to other files or notes
+   - **CRITICAL:** Convert all file references to clickable markdown links during migration
+   - Use relative paths: `[Display text](relative/path.md)` format
 
 ## Step 4: Present Migration Plan
 
@@ -96,15 +102,23 @@ After user approval:
    - Create new file in correct location with proper template structure
    - Preserve original content within the template
    - Add date header if missing
+   - **CRITICAL:** Convert all file/note references to clickable markdown links `[Display](path.md)`
+   - Add References section with clickable links to related notes
 
 3. **Extract key findings** from each file for INDEX.md
 
 4. **Update INDEX.md** with:
-   - Summary of migrated experiments
-   - Key decisions documented
-   - Known issues/solutions
+   - Summary of migrated experiments with clickable links
+   - Key decisions documented with clickable links
+   - Known issues/solutions with clickable links
+   - **Format:** `[Note title](relative/path.md)` for all entries
 
 5. **Create/update quick-reference.md** with current working state if found
+
+6. **Update cross-references**:
+   - After all files are migrated, review and add bi-directional links
+   - If note A references note B, consider adding backlink from B to A
+   - Ensure all paths are correct relative to the new locations
 
 ## Step 6: Verify Migration
 
@@ -116,7 +130,7 @@ After migration:
 
 ## Migration Templates
 
-When restructuring content, use these formats:
+When restructuring content, use these formats and **always include clickable links in References sections**:
 
 **For experiments:**
 ```markdown
@@ -138,6 +152,11 @@ When restructuring content, use these formats:
 
 ## Original Content
 > [Preserve any content that doesn't fit above]
+
+## References
+- Related notes: [Note title](relative/path.md)
+- Code files: [File description](../../path/to/file.py)
+- External links: [Link text](URL)
 ```
 
 **For decisions:**
@@ -157,6 +176,11 @@ Date: YYYY-MM-DD
 
 ## Rationale
 [Extract from original]
+
+## References
+- Related experiments: [Experiment title](../experiments/YYYY-MM-DD-file.md)
+- Related notes: [Note title](relative/path.md)
+- External links: [Link text](URL)
 ```
 
 **For troubleshooting:**
@@ -174,6 +198,13 @@ Date: YYYY-MM-DD
 
 ## Prevention
 [Extract or suggest based on content]
+
+## Related Issues
+- Similar problem: [Other error title](other-error.md)
+- Root cause: [Decision title](../decisions/topic.md)
+
+## References
+- Related experiments: [Experiment title](../experiments/YYYY-MM-DD-file.md)
 ```
 
 ## Important Notes
@@ -182,4 +213,8 @@ Date: YYYY-MM-DD
 - Ask before proceeding with each major step
 - If a note doesn't fit cleanly into one category, ask the user
 - Mixed-content files should be split into separate notes
-- Update all internal links after moving files
+- **CRITICAL:** Update all internal links after moving files
+- **CRITICAL:** Convert all file/note references to clickable markdown links: `[Display](path.md)`
+- Add References sections to migrated notes with clickable links to related content
+- Use relative paths from the note location (e.g., `../experiments/file.md` from decisions/)
+- For meeting notes: Keep each as a snapshot in time - don't edit old meetings

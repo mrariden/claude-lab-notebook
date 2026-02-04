@@ -40,6 +40,8 @@ Or: See `configs/filename.yaml`
 - [ ] Follow-up experiment
 
 ## References
-- Related experiments: experiments/YYYY-MM-DD-file.md
-- Related decisions: decisions/YYYY-MM-topic.md
-- Related troubleshooting: troubleshooting/topic.md
+- Related experiments: [Experiment title](YYYY-MM-DD-file.md)
+- Related decisions: [Decision title](../decisions/YYYY-MM-topic.md)
+- Related troubleshooting: [Troubleshooting title](../troubleshooting/topic.md)
+- Code/configs: [File description](../../path/to/file.py)
+- External links: [Link text](URL)

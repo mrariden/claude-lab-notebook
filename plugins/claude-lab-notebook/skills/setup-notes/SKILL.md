@@ -199,6 +199,37 @@ project/
 
 Always use lowercase with hyphens, no spaces.
 
+## Linking Conventions (CRITICAL)
+
+**All file and note references must be clickable markdown links.**
+
+✅ **Correct:**
+```markdown
+- Related experiment: [Learning rate sweep](../experiments/2025-01-13-lr-sweep.md)
+- Config file: [Training config](../../configs/config.yaml)
+- Decision: [Architecture choice](../decisions/2025-01-architecture.md)
+```
+
+❌ **Incorrect:**
+```markdown
+- Related experiment: experiments/2025-01-13-lr-sweep.md
+- Config file: configs/config.yaml
+- Decision: See 2025-01-architecture.md
+```
+
+**Format:** `[Display text](relative/path.md)`
+- Display text should be descriptive (note title or file description)
+- Use relative paths from the current note location
+- In INDEX.md: All entries must link to their files
+- In note References sections: All related notes/files must be clickable
+- For meeting notes: Each meeting is a snapshot in time - don't edit old meetings, link to them instead
+
+**Benefits:**
+- Click through to related content directly
+- Navigate knowledge graph easily
+- IDE integration for "go to definition"
+- Enables bi-directional linking
+
 ## Critical Reminders
 
 1. **INDEX.md is your map** - Always read it first
@@ -208,8 +239,10 @@ Always use lowercase with hyphens, no spaces.
 5. **Use line ranges** - `view file.md 10 50` for specific sections
 6. **Date everything** - Chronology matters for understanding evolution
 7. **Copy-pasteable configs** - Not vague advice
-8. **Link related notes** - Build a knowledge graph
+8. **Link related notes** - Build a knowledge graph using clickable links: `[Display](path.md)`
 9. **Update quick-reference** - Keep current best practices fresh
+10. **All file references must be clickable** - Use `[Text](path.md)` format, never plain text paths
+11. **Meeting notes are snapshots** - Each meeting gets its own note, don't edit previous meetings
 
 ---
 

@@ -50,22 +50,22 @@ How to avoid this in the future:
 - ✗ Don't do this
 
 ## Related Issues
-- Similar problem: troubleshooting/other-error.md
-- Root cause decision: decisions/YYYY-MM-topic.md
-- May also see: troubleshooting/related-error.md
+- Similar problem: [Other error title](other-error.md)
+- Root cause decision: [Decision title](../decisions/YYYY-MM-topic.md)
+- May also see: [Related error title](related-error.md)
 
 ## Example Occurrences
 Where this has happened before:
 
 **Occurrence 1:**
 - Date: YYYY-MM-DD
-- Context: experiments/YYYY-MM-DD-file.md
+- Context: [Experiment title](../experiments/YYYY-MM-DD-file.md)
 - What we were doing: ...
 - How we fixed it: ...
 
 **Occurrence 2:**
-- Date: YYYY-MM-DD  
-- Context: experiments/YYYY-MM-DD-file.md
+- Date: YYYY-MM-DD
+- Context: [Experiment title](../experiments/YYYY-MM-DD-file.md)
 - What we were doing: ...
 - How we fixed it: ...
 
